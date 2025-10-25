@@ -1,100 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Catherine Petrenko — Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="dark-theme">
-
-  <!-- Header with language & theme panel -->
-  <header>
-    <div class="language-switcher">
-      <button data-lang="en" class="active">EN</button>
-      <button data-lang="es">ES</button>
-      <button data-lang="ru">RU</button>
+<body>
+  <header class="top-bar">
+    <div class="controls">
+      <div class="language-selector">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="ru">RU</button>
+      </div>
+      <button id="theme-toggle">☀️ / 🌙</button>
     </div>
-    <button id="themeToggle" title="Toggle theme">🌗</button>
   </header>
 
-  <!-- English -->
-  <main class="lang active" id="en">
-    <h1>Catherine Petrenko</h1>
-    <h2>Project & Product Manager</h2>
-    <p>I build systems that keep running even when people rest.</p>
-    <section>
-      <h3>Key Skills</h3>
-      <ul>
-        <li>Project & Product Management (IT, e-commerce)</li>
-        <li>Business Analysis & Process Design</li>
-        <li>Planning, Communication, Risk Management</li>
-        <li>Team Building & Organizational Systems</li>
-        <li>Agile / Scrum (PSM, PSF coursework)</li>
-        <li>ITIL mindset</li>
-        <li>Development Coordination (Specs, Integrations, MVP)</li>
-      </ul>
-    </section>
-    <section>
-      <h3>About Me</h3>
-      <p>I combine business logic, engineering thinking, and legal precision. Over 10 years, I’ve led IT projects for large e-commerce companies, including international ones.</p>
-      <p>My specialization is system management: processes work without manual control. Teams are stable, communication transparent, decisions data-driven.</p>
-      <p>I focus on balancing order and creativity so people thrive without burnout.</p>
-    </section>
-  </main>
-
-  <!-- Spanish -->
-  <main class="lang" id="es">
-    <h1>Catherine Petrenko</h1>
-    <h2>Gestora de Proyectos y Productos</h2>
-    <p>Construyo sistemas que siguen funcionando incluso cuando la gente descansa.</p>
-    <section>
-      <h3>Habilidades Clave</h3>
-      <ul>
-        <li>Gestión de Proyectos y Productos (IT, e-commerce)</li>
-        <li>Análisis de Negocios y Diseño de Procesos</li>
-        <li>Planificación, Comunicación, Gestión de Riesgos</li>
-        <li>Formación de Equipos y Sistemas Organizativos</li>
-        <li>Agile / Scrum (cursos PSM, PSF)</li>
-        <li>Mentalidad ITIL</li>
-        <li>Coordinación de Desarrollo (Especificaciones, Integraciones, MVP)</li>
-      </ul>
-    </section>
-    <section>
-      <h3>Sobre Mí</h3>
-      <p>Combino la lógica empresarial, el pensamiento ingenieril y la precisión legal. Más de 10 años liderando proyectos de TI para grandes empresas de e-commerce, incluidas internacionales.</p>
-      <p>Mi especialización es la gestión de sistemas: los procesos funcionan sin supervisión manual. Los equipos son estables, la comunicación transparente, las decisiones basadas en datos.</p>
-      <p>Mi enfoque es equilibrar orden y creatividad para que las personas sean eficientes sin agotarse.</p>
-    </section>
-  </main>
-
-  <!-- Russian -->
-  <main class="lang" id="ru">
-    <h1>Екатерина Петренко</h1>
-    <h2>Project & Product Manager</h2>
-    <p>Строю системы, которые продолжают работать даже когда люди отдыхают.</p>
-    <section>
-      <h3>Ключевые навыки</h3>
-      <ul>
-        <li>Управление проектами и продуктами (IT, e-commerce)</li>
-        <li>Бизнес-анализ и проектирование процессов</li>
-        <li>Планирование, коммуникации, управление рисками</li>
-        <li>Построение команд и организационных систем</li>
-        <li>Agile / Scrum (курсы PSM, PSF)</li>
-        <li>ITIL мышление</li>
-        <li>Координация разработки (ТЗ, интеграции, MVP)</li>
-      </ul>
-    </section>
-    <section>
-      <h3>Обо мне</h3>
-      <p>Соединяю бизнес-логику, инженерное мышление и юридическую точность. Более 10 лет веду IT-проекты для крупного e-commerce, включая международные.</p>
-      <p>Создаю процессы, которые работают без ручного контроля. Команда стабильна, коммуникации прозрачны, решения принимаются на основе данных.</p>
-      <p>Баланс между порядком и креативом позволяет людям быть эффективными без выгорания.</p>
-    </section>
-  </main>
+  <main id="content" class="fade"></main>
 
   <script src="script.js"></script>
 </body>
 </html>
-
 
