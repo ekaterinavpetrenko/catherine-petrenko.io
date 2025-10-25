@@ -1,8 +1,8 @@
 body {
-  font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+  font-family: "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
   line-height: 1.6;
-  background-color: #f9f9f9;
-  color: #2a2a2a;
+  background-color: #F2F2F7;
+  color: #1D1D1F;
   max-width: 960px;
   margin: 0 auto;
   padding: 60px 20px;
@@ -13,72 +13,90 @@ h1 {
   font-size: 40px;
   font-weight: 700;
   margin-bottom: 10px;
-  color: #111;
+  color: #111111;
 }
 
 main > h2 {
   text-align: center;
   font-size: 22px;
   font-weight: 400;
-  color: #555;
+  color: #555555;
   margin-bottom: 50px;
 }
 
-section {
-  margin-bottom: 60px;
-}
+section { margin-bottom: 60px; }
 
 section h2 {
   font-size: 22px;
-  border-bottom: 2px solid #e0e0e0;
-  padding-bottom: 8px;
+  border-bottom: 1px solid #D1D1D6;
+  padding-bottom: 6px;
   margin-bottom: 20px;
-  color: #222;
+  color: #111111;
 }
 
-p {
-  margin-bottom: 18px;
-  text-align: justify;
-}
+p { margin-bottom: 18px; text-align: justify; }
 
-ul {
-  list-style-type: none;
-  padding-left: 0;
-}
+ul { list-style-type: none; padding-left: 0; }
 
 li {
-  padding: 6px 0;
+  padding: 6px 0 6px 20px;
   position: relative;
 }
 
 li::before {
   content: "▹";
-  color: #007acc;
+  color: #007AFF;
   position: absolute;
-  left: -18px;
+  left: 0;
   font-size: 18px;
 }
 
 hr {
   border: none;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #D1D1D6;
   margin: 40px 0;
 }
 
-@media (max-width: 700px) {
-  body {
-    padding: 40px 16px;
-  }
-
-  h1 {
-    font-size: 32px;
-  }
-
-  main > h2 {
-    font-size: 20px;
-  }
-
-  section h2 {
-    font-size: 20px;
-  }
+.lang-switch {
+  text-align: center;
+  margin-bottom: 30px;
 }
+
+.lang-switch button {
+  margin: 0 6px;
+  padding: 6px 14px;
+  cursor: pointer;
+  background: #007AFF;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.lang-switch button:hover { background: #005BBB; }
+
+/* Language fade animation */
+.lang {
+  opacity: 0;
+  pointer-events: none;  /* чтобы скрытый блок не реагировал на клики */
+  transition: opacity 0.5s ease;
+  position: absolute;    /* поверх друг друга */
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.lang.active {
+  opacity: 1;
+  pointer-events: auto;
+  position: relative;    /* активный блок в потоке */
+}
+
+@media (max-width: 700px) {
+  body { padding: 40px 16px; }
+  h1 { font-size: 32px; }
+  main > h2 { font-size: 20px; }
+  section h2 { font-size: 20px; }
+}
+
