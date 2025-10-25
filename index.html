@@ -1,108 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Catherine Petrenko — Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="dark-theme">
 
-  <!-- Language switch buttons -->
-  <div class="lang-switch">
-    <button onclick="setLang('en')">EN</button>
-    <button onclick="setLang('ru')">RU</button>
-    <button onclick="setLang('es')">ES</button>
-  </div>
+  <!-- Header with language & theme panel -->
+  <header>
+    <div class="language-switcher">
+      <button data-lang="en" class="active">EN</button>
+      <button data-lang="es">ES</button>
+      <button data-lang="ru">RU</button>
+    </div>
+    <button id="themeToggle" title="Toggle theme">🌗</button>
+  </header>
 
-  <!-- Language container -->
-  <div class="lang-container">
+  <!-- English -->
+  <main class="lang active" id="en">
+    <h1>Catherine Petrenko</h1>
+    <h2>Project & Product Manager</h2>
+    <p>I build systems that keep running even when people rest.</p>
+    <section>
+      <h3>Key Skills</h3>
+      <ul>
+        <li>Project & Product Management (IT, e-commerce)</li>
+        <li>Business Analysis & Process Design</li>
+        <li>Planning, Communication, Risk Management</li>
+        <li>Team Building & Organizational Systems</li>
+        <li>Agile / Scrum (PSM, PSF coursework)</li>
+        <li>ITIL mindset</li>
+        <li>Development Coordination (Specs, Integrations, MVP)</li>
+      </ul>
+    </section>
+    <section>
+      <h3>About Me</h3>
+      <p>I combine business logic, engineering thinking, and legal precision. Over 10 years, I’ve led IT projects for large e-commerce companies, including international ones.</p>
+      <p>My specialization is system management: processes work without manual control. Teams are stable, communication transparent, decisions data-driven.</p>
+      <p>I focus on balancing order and creativity so people thrive without burnout.</p>
+    </section>
+  </main>
 
-    <!-- English -->
-    <main class="lang active" id="en">
-      <div class="card">
-        <h1>Catherine Petrenko</h1>
-        <h2>Project & Product Manager. I build systems that keep working even when people rest.</h2>
-        <hr>
-        <section>
-          <h2>Key Skills:</h2>
-          <ul>
-            <li>Project and Product Management (IT, e-commerce)</li>
-            <li>Business Analysis and Process Design</li>
-            <li>Planning, Communication, Risk Management</li>
-            <li>Team Building and Organizational Systems</li>
-            <li>Agile / Scrum (PSM, PSF coursework)</li>
-            <li>ITIL mindset</li>
-            <li>Development Coordination (Specifications, Integrations, MVP)</li>
-          </ul>
-        </section>
-        <section>
-          <h2>About Me</h2>
-          <p>I am a project and product manager combining business logic, engineering thinking, and legal precision. For over 10 years, I’ve led IT projects for large e-commerce companies, including international ones.</p>
-          <p>My specialization is systems management: I build processes that work even without manual oversight. In projects, I create an infrastructure where the team is stable, communication is transparent, and decisions are data-driven, not guesswork.</p>
-          <p>I believe people are more important than processes — but infrastructure allows them to be effective without burning out. My focus is always on balancing order and creativity.</p>
-          <p>If you need someone who can turn a chaotic set of tasks into a manageable system, we’ll work well together.</p>
-        </section>
-      </div>
-    </main>
+  <!-- Spanish -->
+  <main class="lang" id="es">
+    <h1>Catherine Petrenko</h1>
+    <h2>Gestora de Proyectos y Productos</h2>
+    <p>Construyo sistemas que siguen funcionando incluso cuando la gente descansa.</p>
+    <section>
+      <h3>Habilidades Clave</h3>
+      <ul>
+        <li>Gestión de Proyectos y Productos (IT, e-commerce)</li>
+        <li>Análisis de Negocios y Diseño de Procesos</li>
+        <li>Planificación, Comunicación, Gestión de Riesgos</li>
+        <li>Formación de Equipos y Sistemas Organizativos</li>
+        <li>Agile / Scrum (cursos PSM, PSF)</li>
+        <li>Mentalidad ITIL</li>
+        <li>Coordinación de Desarrollo (Especificaciones, Integraciones, MVP)</li>
+      </ul>
+    </section>
+    <section>
+      <h3>Sobre Mí</h3>
+      <p>Combino la lógica empresarial, el pensamiento ingenieril y la precisión legal. Más de 10 años liderando proyectos de TI para grandes empresas de e-commerce, incluidas internacionales.</p>
+      <p>Mi especialización es la gestión de sistemas: los procesos funcionan sin supervisión manual. Los equipos son estables, la comunicación transparente, las decisiones basadas en datos.</p>
+      <p>Mi enfoque es equilibrar orden y creatividad para que las personas sean eficientes sin agotarse.</p>
+    </section>
+  </main>
 
-    <!-- Russian -->
-    <main class="lang" id="ru">
-      <div class="card">
-        <h1>Екатерина Петренко</h1>
-        <h2>Project & Product Manager. Строю системы, которые работают даже когда люди отдыхают.</h2>
-        <hr>
-        <section>
-          <h2>Ключевые навыки:</h2>
-          <ul>
-            <li>Управление проектами и продуктами (IT, e-commerce)</li>
-            <li>Бизнес-анализ и проектирование процессов</li>
-            <li>Планирование, коммуникации, риск-менеджмент</li>
-            <li>Построение команд и организационных систем</li>
-            <li>Agile / Scrum (PSM, PSF)</li>
-            <li>ITIL мышление</li>
-            <li>Координация разработки (ТЗ, интеграции, MVP)</li>
-          </ul>
-        </section>
-        <section>
-          <h2>Обо мне</h2>
-          <p>Я — проектный и продуктовый менеджер, соединяю бизнес-логику, инженерное мышление и юридическую точность. Уже более 10 лет веду IT-проекты для крупного e-commerce, включая международные.</p>
-          <p>Моя специализация — системное управление: строю процессы, которые работают даже без ручного контроля. В проектах создаю инфраструктуру, где команда стабильна, коммуникации прозрачны, а решения принимаются на данных, а не на догадках.</p>
-          <p>Я верю, что люди важнее процессов — но именно инфраструктура позволяет людям быть эффективными, не выгорая. Поэтому мой фокус всегда на балансе между порядком и креативом.</p>
-          <p>Если вам нужен человек, который превращает хаос задач в управляемую систему — мы точно сработаемся.</p>
-        </section>
-      </div>
-    </main>
-
-    <!-- Spanish -->
-    <main class="lang" id="es">
-      <div class="card">
-        <h1>Catherine Petrenko</h1>
-        <h2>Gestora de proyectos y productos. Construyo sistemas que funcionan incluso cuando las personas descansan.</h2>
-        <hr>
-        <section>
-          <h2>Habilidades Clave:</h2>
-          <ul>
-            <li>Gestión de proyectos y productos (IT, e-commerce)</li>
-            <li>Análisis de negocios y diseño de procesos</li>
-            <li>Planificación, comunicación, gestión de riesgos</li>
-            <li>Construcción de equipos y sistemas organizativos</li>
-            <li>Agile / Scrum (PSM, PSF)</li>
-            <li>Mentalidad ITIL</li>
-            <li>Coordinación de desarrollo (Especificaciones, Integraciones, MVP)</li>
-          </ul>
-        </section>
-        <section>
-          <h2>Sobre mí</h2>
-          <p>Soy una gestora de proyectos y productos que combina lógica empresarial, pensamiento de ingeniería y precisión legal. Durante más de 10 años, he liderado proyectos de IT para grandes empresas de e-commerce, incluyendo internacionales.</p>
-          <p>Mi especialización es la gestión de sistemas: construyo procesos que funcionan incluso sin supervisión manual. En los proyectos, creo una infraestructura donde el equipo es estable, la comunicación transparente y las decisiones basadas en datos, no en suposiciones.</p>
-          <p>Creo que las personas son más importantes que los procesos, pero la infraestructura permite que sean efectivas sin agotarse. Mi enfoque siempre está en equilibrar orden y creatividad.</p>
-          <p>Si necesitas a alguien que pueda convertir un conjunto caótico de tareas en un sistema gestionable, trabajaremos muy bien juntos.</p>
-        </section>
-      </div>
-    </main>
-
-  </div>
+  <!-- Russian -->
+  <main class="lang" id="ru">
+    <h1>Екатерина Петренко</h1>
+    <h2>Project & Product Manager</h2>
+    <p>Строю системы, которые продолжают работать даже когда люди отдыхают.</p>
+    <section>
+      <h3>Ключевые навыки</h3>
+      <ul>
+        <li>Управление проектами и продуктами (IT, e-commerce)</li>
+        <li>Бизнес-анализ и проектирование процессов</li>
+        <li>Планирование, коммуникации, управление рисками</li>
+        <li>Построение команд и организационных систем</li>
+        <li>Agile / Scrum (курсы PSM, PSF)</li>
+        <li>ITIL мышление</li>
+        <li>Координация разработки (ТЗ, интеграции, MVP)</li>
+      </ul>
+    </section>
+    <section>
+      <h3>Обо мне</h3>
+      <p>Соединяю бизнес-логику, инженерное мышление и юридическую точность. Более 10 лет веду IT-проекты для крупного e-commerce, включая международные.</p>
+      <p>Создаю процессы, которые работают без ручного контроля. Команда стабильна, коммуникации прозрачны, решения принимаются на основе данных.</p>
+      <p>Баланс между порядком и креативом позволяет людям быть эффективными без выгорания.</p>
+    </section>
+  </main>
 
   <script src="script.js"></script>
 </body>
 </html>
+
+
