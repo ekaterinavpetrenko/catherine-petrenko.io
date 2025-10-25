@@ -1,4 +1,9 @@
 function setLang(lang) {
-  document.querySelectorAll('.lang').forEach(el => el.classList.remove('active'));
-  document.getElementById(lang).classList.add('active');
+  const active = document.querySelector('.lang.active');
+  const target = document.getElementById(lang);
+
+  if(active === target) return;
+
+  active.classList.remove('active');
+  target.classList.add('active');
 }
