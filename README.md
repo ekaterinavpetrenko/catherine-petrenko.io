@@ -1,30 +1,21 @@
 # Catherine Petrenko — Portfolio
 
-A minimalist personal portfolio page built with pure HTML and CSS.  
-Focuses on clarity, system thinking, and human-centered project management.
-
-## Structure
-
-- **index.html** — main page with professional bio and key skills  
-- **style.css** — clean responsive layout using modern typography  
+Minimalist portfolio page showcasing my professional bio, key skills, and system-thinking approach to project management. Built with HTML, CSS, and JSON-driven multilingual support.
 
 ## Features
+- English / Spanish / Russian content via JSON
+- Smooth language & theme switching (dark/light)
+- Clean, responsive layout with modern typography
+- Structured presentation of skills, experience, and philosophy
+- Scalable design: easy to add languages or content blocks
 
-- Semantic HTML markup  
-- Responsive minimalist design  
-- Soft color palette and readable typography  
-- Clear, structured self-introduction  
+## About Me
+Project & Product Manager with 10+ years in IT and e-commerce.  
+I design systems that keep working even when people rest — clarity, documentation, and thoughtful process design are my tools.
 
-## About
+> "I don’t move tasks — I move meaning."  
+> — Catherine Petrenko
 
-I'm Catherine Petrenko — Project & Product Manager with 10+ years of experience in IT and e-commerce.  
-I build systems that keep working even when people rest — through clarity, documentation, and thoughtful process design.
-
-## Preview
-
+## Try it
 Open `index.html` in your browser or deploy via GitHub Pages.
 
----
-
-> _"I don’t move tasks — I move meaning."_  
-> — Catherine Petrenko

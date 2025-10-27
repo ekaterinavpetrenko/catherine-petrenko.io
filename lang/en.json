@@ -1,0 +1,20 @@
+{
+  "name": "Catherine Petrenko",
+  "subtitle": "Project & Product Manager. I build systems that keep working even when people rest.",
+  "skillsTitle": "Key Skills:",
+  "skills": [
+    "Project and Product Management (IT, e-commerce)",
+    "Business Analysis and Process Design",
+    "Planning, Communication, Risk Management",
+    "Team Building and Organizational Systems",
+    "Agile / Scrum (PSM, PSF coursework)",
+    "ITIL mindset",
+    "Development Coordination (Specifications, Integrations, MVP)"
+  ],
+  "aboutTitle": "About Me",
+  "aboutText": [
+    "I am a project and product manager combining business logic, engineering thinking, and legal precision. For over 10 years, I’ve led IT projects for large e-commerce companies, including international ones.",
+    "My specialization is systems management: I build processes that work even without manual oversight. I create infrastructure where the team is stable, communication transparent, and decisions data-driven.",
+    "I believe people are more important than processes — but infrastructure allows them to be effective without burning out. My focus is always on balancing order and creativity."
+  ]
+}
