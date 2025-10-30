@@ -19,3 +19,5 @@ I design systems that keep working even when people rest — clarity, documentat
 ## Try it
 Open `index.html` in your browser or deploy via GitHub Pages.
 
+[![CI & Pages](https://github.com/ekaterinavpetrenko/catherine-petrenko.io/actions/workflows/ci-pages.yml/badge.svg?branch=main)](https://github.com/ekaterinavpetrenko/catherine-petrenko.io/actions/workflows/ci-pages.yml)
+
