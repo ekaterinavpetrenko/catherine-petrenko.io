@@ -16,10 +16,6 @@ I design systems that keep working even when people rest — clarity, documentat
 > "I don’t move tasks — I move meaning."  
 > — Catherine Petrenko
 
-## Stage of Evolution
-This project currently serves as a practical learning environment — a place to explore architecture decisions, test logic, and refine troubleshooting and independent feature development in a realistic but low-risk setup.  
-Its purpose is to iterate, learn, and strengthen the foundation for future production-ready systems.
-
 ## Try it
 Open `index.html` in your browser or deploy via GitHub Pages.
 
