@@ -195,4 +195,3 @@ describe('loadLang / theme — стрессовые кейсы', () => {
     expect(end).toBe(start);
   });
 });
-

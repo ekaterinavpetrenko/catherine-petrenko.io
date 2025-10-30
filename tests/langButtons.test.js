@@ -107,5 +107,3 @@ describe('кнопки языков — активное состояние и �
     expect(ruButton.classList.contains('active')).toBe(beforeActive.ru);
   });
 });
-
-
