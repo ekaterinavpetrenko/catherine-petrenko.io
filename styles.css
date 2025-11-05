@@ -127,3 +127,89 @@ main {
   transform: translateY(0);
 }
 
+/* ================================
+   ДОБАВЛЕНО: Hero-портрет и CTA
+   ================================ */
+
+/* Портрет (квадратный), ровно под текстом, по центру */
+.portrait-figure {
+  margin: 16px 0 0;
+  display: flex;
+  justify-content: center;
+}
+.portrait-img {
+  display: block;
+  width: clamp(260px, 28vw, 560px); /* max 560px на десктопе */
+  height: auto;                     /* не растягиваем по высоте */
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.12), 0 2px 6px rgba(0,0,0,.06);
+  object-fit: cover;                /* страховка, если где-то зададут высоту */
+}
+
+/* CTA-кнопки под фото */
+.hero-cta {
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
+  flex-wrap: wrap;
+}
+
+/* Apple-like кнопки — только в зоне hero, чтобы не ломать глобальные <a> */
+.hero-cta a.button {
+  text-decoration: none !important;
+  cursor: pointer;
+  display: inline-block;
+  white-space: nowrap;
+
+  border-radius: 980px;
+  font-size: 17px;
+  line-height: 1.17648;
+  font-weight: 400;
+  letter-spacing: -.022em;
+  /* шрифт наследуется из body (system-ui) */
+
+  border: 1px solid transparent;
+  padding: 11px 21px;
+
+  transition:
+    box-shadow .2s ease,
+    transform .06s ease,
+    background-color .2s ease,
+    color .2s ease,
+    border-color .2s ease;
+}
+
+/* Primary = синяя заливка (#0071e3) */
+.hero-cta a.button.button-primary {
+  background: rgb(0,113,227);
+  border-color: transparent;
+  color: #fff;
+}
+.hero-cta a.button.button-primary:hover {
+  box-shadow: 0 6px 14px rgba(0,0,0,.15);
+}
+
+/* Tertiary = прозрачная, синяя обводка/текст (#2997ff) */
+.hero-cta a.button.button-tertiary {
+  background: transparent;
+  color: rgb(41,151,255);
+  border-color: rgb(41,151,255);
+}
+.hero-cta a.button.button-tertiary:hover {
+  box-shadow: 0 6px 14px rgba(41,151,255,.25);
+}
+
+.hero-cta a.button:active { transform: translateY(1px); }
+.hero-cta a.button:focus-visible { outline: 2px solid #0071e3; outline-offset: 2px; }
+
+/* Узкие экраны: складываем CTA в колонку */
+@media (max-width: 600px) {
+  .hero-cta { flex-direction: column; gap: 12px; }
+  .hero-cta a.button { width: 100%; max-width: 360px; }
+}
+
+
+
+

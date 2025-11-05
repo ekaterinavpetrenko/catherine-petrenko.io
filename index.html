@@ -1,26 +1,93 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Catherine Petrenko — Portfolio</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <!-- Early theme apply: use saved theme or default to dark (avoids flash) -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        var theme = saved || 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch(e) {}
+    })();
+  </script>
+
+  <!-- ====== BASIC SEO ====== -->
+  <title>Catherine Petrenko — Project & Product Manager</title>
+  <meta name="description" content="Project & Product Manager. I build systems that keep working even when people rest.">
+
+  <!-- Canonical (GitHub Pages URL) -->
+  <link rel="canonical" href="https://ekaterinavpetrenko.github.io/catherine-petrenko.io/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Catherine Petrenko — Project & Product Manager">
+  <meta property="og:description" content="I build systems that keep working even when people rest.">
+  <meta property="og:url" content="https://ekaterinavpetrenko.github.io/catherine-petrenko.io/">
+  <meta property="og:image" content="https://ekaterinavpetrenko.github.io/catherine-petrenko.io/assets/img/og-cover.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Catherine Petrenko — Project & Product Manager">
+  <meta name="twitter:description" content="I build systems that keep working even when people rest.">
+  <meta name="twitter:image" content="https://ekaterinavpetrenko.github.io/catherine-petrenko.io/assets/img/og-cover.jpg">
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Catherine Petrenko",
+    "jobTitle":"Project & Product Manager",
+    "url":"https://ekaterinavpetrenko.github.io/catherine-petrenko.io/",
+    "image":"https://ekaterinavpetrenko.github.io/catherine-petrenko.io/assets/img/catherine-hero.jpg",
+    "sameAs":[
+      "https://www.linkedin.com/in/catherine-petrenko/",
+      "https://t.me/linoteia"
+    ]
+  }
+  </script>
+
+  <!-- LCP image preload (paths must match the <img> rendered by JS) -->
+  <link rel="preload" as="image"
+        href="/catherine-petrenko.io/assets/img/catherine-hero.jpg"
+        imagesrcset="/catherine-petrenko.io/assets/img/catherine-hero@2x.jpg 2x">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="./styles.css">
+  <!-- Hint to UAs that both color schemes are supported -->
+  <meta name="color-scheme" content="dark light">
 </head>
 <body>
-  <header class="top-bar">
+  <!-- ===== Controls (language + theme) ===== -->
+  <header id="top" class="site-header">
     <div class="controls">
       <div class="language-selector">
         <button class="lang-btn active" data-lang="en">EN</button>
         <button class="lang-btn" data-lang="es">ES</button>
         <button class="lang-btn" data-lang="ru">RU</button>
       </div>
-      <button id="theme-toggle">☀️ / 🌙</button>
+      <button id="theme-toggle" aria-label="Toggle theme">☀️ / 🌙</button>
     </div>
   </header>
 
-  <main id="content" class="fade"></main>
+  <!-- App content root -->
+  <main id="content" class="fade">
+    <noscript>
+      <section class="nojs-hero">
+        <h1>Catherine Petrenko</h1>
+        <p>Project &amp; Product Manager. I build systems that keep working even when people rest.</p>
+      </section>
+    </noscript>
+  </main>
 
-  <script src="script.js" defer></script>
+  <footer id="footer"></footer>
+
+  <!-- App Script -->
+  <script src="./script.js" defer></script>
 </body>
 </html>
 
