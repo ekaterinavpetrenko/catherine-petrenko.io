@@ -3,5 +3,6 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://ekaterinavpetrenko.github.io/catherine-petrenko.io/sitemap.xml
+Sitemap: https://catherine-petrenko.github.io/sitemap.xml
+
 
