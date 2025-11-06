@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sitemap for GitHub Project Pages deployment -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Canonical homepage -->
+  <url>
+    <loc>https://ekaterinavpetrenko.github.io/catherine-petrenko.io/</loc>
+    <lastmod>2025-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+
+    <!-- Key hero images -->
+    <image:image>
+      <image:loc>https://ekaterinavpetrenko.github.io/catherine-petrenko.io/catherine-hero.jpg</image:loc>
+      <image:caption>Catherine Petrenko — portfolio hero image</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ekaterinavpetrenko.github.io/catherine-petrenko.io/catherine-hero@2x.jpg</image:loc>
+      <image:caption>Catherine Petrenko — portfolio hero image (2x)</image:caption>
+    </image:image>
+  </url>
+
+  <!-- If you later add separate pages (e.g., /projects/, /contact/), add a <url> block for each. -->
+  <!-- Example:
+  <url>
+    <loc>https://ekaterinavpetrenko.github.io/catherine-petrenko.io/projects/</loc>
+    <lastmod>2025-11-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  -->
+</urlset>
