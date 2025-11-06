@@ -1,4 +1,7 @@
+# Allow indexing of the site hosted on GitHub Project Pages
 User-agent: *
 Allow: /
 
+# Sitemap location
 Sitemap: https://ekaterinavpetrenko.github.io/catherine-petrenko.io/sitemap.xml
+
