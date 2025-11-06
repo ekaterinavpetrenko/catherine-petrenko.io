@@ -158,24 +158,17 @@ main {
   object-fit: cover;                /* safety if height is constrained somewhere */
 }
 
-/* CTA buttons row under the portrait */
+/* CTA buttons container under the portrait — bound to same width as the portrait */
 .hero-cta {
-  margin-top: 14px;
+  margin: 14px auto 0;              /* center horizontally under the image */
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 13px;
   flex-wrap: wrap;
-}
 
-/* CTA buttons row under the portrait */
-.hero-cta {
-  margin-top: 14px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 13px;
-  flex-wrap: wrap;
+  width: clamp(260px, 28vw, 560px); /* match .portrait-img width */
+  max-width: 100%;                  /* never exceed viewport width */
 }
 
 /* Apple-like buttons (scoped to hero only) <a> */
@@ -197,7 +190,7 @@ main {
 
   border: 1px solid transparent;
   padding: clamp(9px, 2.5vw, 11px) clamp(16px, 4vw, 21px); /* responsive padding */
-  max-width: 100%;                     /* never overflow container */
+  max-width: 100%;                     /* keep inside container */
   box-sizing: border-box;              /* include padding in width */
 
   transition:
@@ -232,19 +225,19 @@ main {
 .hero-cta a.button:active { transform: translateY(1px); }
 .hero-cta a.button:focus-visible { outline: 2px solid #0071e3; outline-offset: 2px; }
 
-/* Narrow screens: stack CTA vertically and make buttons full-width */
+/* Narrow screens: stack CTA vertically; buttons fill the bounded CTA width */
 @media (max-width: 600px) {
   .hero-cta {
     flex-direction: column;
     gap: 12px;
-    width: 100%;
-    padding: 0 16px;                 /* small horizontal breathing room */
+    /* no extra horizontal padding needed; width is already bounded */
   }
   .hero-cta a.button {
     width: 100%;
-    max-width: 420px;                /* comfortable cap for larger phones */
+    max-width: 420px;                /* optional cap for larger phones */
   }
 }
+
 
 
 
