@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ekaterinavpetrenko.github.io/catherine-petrenko.io/sitemap.xml
