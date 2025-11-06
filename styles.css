@@ -168,18 +168,28 @@ main {
   flex-wrap: wrap;
 }
 
+/* CTA buttons row under the portrait */
+.hero-cta {
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
+  flex-wrap: wrap;
+}
+
 /* Apple-like buttons (scoped to hero only) <a> */
 .hero-cta a.button {
   text-decoration: none !important;
   cursor: pointer;
   display: inline-block;
-  white-space: normal;
+  white-space: normal;                  /* allow wrapping on small screens */
 
   border-radius: 980px;
-  
+
   /* responsive font size for small screens */
   font-size: clamp(15px, 4vw, 17px);
-  
+
   line-height: 1.17648;
   font-weight: 400;
   letter-spacing: -.022em;
@@ -235,6 +245,7 @@ main {
     max-width: 420px;                /* comfortable cap for larger phones */
   }
 }
+
 
 
 
