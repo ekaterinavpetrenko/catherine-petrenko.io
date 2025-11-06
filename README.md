@@ -21,7 +21,7 @@ This project currently serves as a practical learning environment — a place to
 Its purpose is to iterate, learn, and strengthen the foundation for future production-ready systems.
 
 ## Try it
-Open [`index.html`](https://catherine-petrenko.github.io/catherine-petrenko/) in your browser or deploy via GitHub Pages.
+Open [`index.html`](https://catherine-petrenko.github.io/) in your browser or deploy via GitHub Pages.
 
 [![CI & Pages](https://github.com/ekaterinavpetrenko/catherine-petrenko.io/actions/workflows/ci-pages.yml/badge.svg?branch=main)](https://github.com/ekaterinavpetrenko/catherine-petrenko.io/actions/workflows/ci-pages.yml)
 
