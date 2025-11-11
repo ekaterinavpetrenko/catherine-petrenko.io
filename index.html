@@ -1,11 +1,10 @@
 <!-- =============================================
   index.html — Catherine Petrenko (consent-ready)
-  - Clean section dividers
-  - Full SEO (OG/Twitter/JSON-LD/Yandex)
-  - Cookiebot banner only (no declaration)
-  - Analytics deferred to end of <body>, blocked until consent
-  - A11y: aria-label/aria-pressed + safe Cookiebot renew
-  - CTA auto-class patch (keeps your hero buttons styled)
+  - SEO/OG/Twitter/JSON-LD + Yandex verify
+  - Cookiebot autoblocking; analytics deferred
+  - Early theme apply (no flash) + accessible toggle
+  - Hero noscript fallback (portrait + CTA)
+  - CTA classes applied reliably (incl. async renders)
 ============================================== -->
 <!doctype html>
 <html lang="en" data-theme="dark">
@@ -13,37 +12,39 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <!-- ====== EARLY THEME APPLY (prevents flash) ====== -->
+  <!-- Early theme apply -->
   <script>
     (function () {
       try {
         var saved = localStorage.getItem('theme');
-        var theme = saved || 'dark';
+        var theme = (saved === 'dark' || saved === 'light')
+          ? saved
+          : (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
         document.documentElement.setAttribute('data-theme', theme);
       } catch(e) {}
     })();
   </script>
 
-  <!-- ====== BASIC SEO ====== -->
+  <!-- Basic SEO -->
   <title>Catherine Petrenko — Project & Product Manager</title>
   <meta name="description" content="Project & Product Manager. I build systems that keep working even when people rest.">
   <link rel="canonical" href="https://catherine-petrenko.github.io/">
   <meta name="yandex-verification" content="5e4908de6d3639d6">
 
-  <!-- ====== OPEN GRAPH ====== -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Catherine Petrenko — Project & Product Manager">
   <meta property="og:description" content="I build systems that keep working even when people rest.">
   <meta property="og:url" content="https://catherine-petrenko.github.io/">
   <meta property="og:image" content="https://catherine-petrenko.github.io/assets/img/og-cover.jpg">
 
-  <!-- ====== TWITTER CARD ====== -->
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Catherine Petrenko — Project & Product Manager">
   <meta name="twitter:description" content="I build systems that keep working even when people rest.">
   <meta name="twitter:image" content="https://catherine-petrenko.github.io/assets/img/og-cover.jpg">
 
-  <!-- ====== STRUCTURED DATA (JSON-LD) ====== -->
+  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -59,53 +60,50 @@
   }
   </script>
 
-  <!-- ====== PERFORMANCE HINTS ====== -->
-  <!-- LCP image preload (paths must match rendered <img>) -->
+  <!-- Performance: LCP image preload -->
   <link rel="preload" as="image"
         href="/assets/img/catherine-hero.jpg"
-        imagesrcset="/assets/img/catherine-hero@2x.jpg 2x" fetchpriority="high">
+        imagesrcset="/assets/img/catherine-hero@2x.jpg 2x"
+        fetchpriority="high">
 
-  <!-- ====== CONSENT (Cookiebot banner + autoblocking) ====== -->
+  <!-- Consent: Cookiebot autoblocking -->
   <script id="Cookiebot"
     src="https://consent.cookiebot.com/uc.js"
     data-cbid="d80b5793-ad70-40a1-8679-6f0e44e93e72"
     data-blockingmode="auto"
     type="text/javascript"></script>
 
-  <!-- ====== STYLES ====== -->
+  <!-- Styles -->
   <meta name="color-scheme" content="dark light">
   <link rel="stylesheet" href="/styles.css">
-  <!-- if you use separated cookies.css, keep this line; otherwise remove -->
   <link rel="stylesheet" href="/cookies.css">
 </head>
 <body>
 
-  <!-- ====== CONTROLS (language + theme) ====== -->
-  <header id="top" class="site-header">
+  <!-- Controls -->
+  <header class="top-bar">
     <div class="controls">
       <div class="language-selector" aria-label="Language selector">
         <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
         <button class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
         <button class="lang-btn" data-lang="ru" aria-pressed="false">RU</button>
       </div>
-      <button id="theme-toggle" aria-label="Toggle theme" aria-pressed="true">🌙</button>
+      <button id="theme-toggle" aria-label="Toggle theme" aria-pressed="false">🌙</button>
     </div>
   </header>
 
-  <!-- ====== APP CONTENT ROOT ====== -->
+  <!-- App root -->
   <main id="content" class="fade">
-    <!-- Progressive fallback for no-JS -->
     <noscript>
       <section class="nojs-hero inner-section">
         <h1>Catherine Petrenko</h1>
         <p>Project &amp; Product Manager. I build systems that keep working even when people rest.</p>
-
         <figure class="portrait-figure">
-          <img class="portrait-img" src="/assets/img/catherine-hero.jpg"
+          <img class="portrait-img"
+               src="/assets/img/catherine-hero.jpg"
                srcset="/assets/img/catherine-hero@2x.jpg 2x"
                alt="Portrait of Catherine Petrenko">
         </figure>
-
         <div class="hero-cta">
           <a class="button button-primary" href="https://www.linkedin.com/in/catherine-petrenko/">LinkedIn</a>
           <a class="button button-tertiary" href="https://t.me/linoteia">Telegram</a>
@@ -114,7 +112,7 @@
     </noscript>
   </main>
 
-  <!-- ====== COOKIES INLINE (index link to /cookies) ====== -->
+  <!-- Cookies inline -->
   <section class="cookies-inline" aria-label="Cookies">
     <h2 class="cookies-inline__title">Cookies. Your choice.</h2>
     <a class="cookies-inline__link" href="/cookies" aria-label="Learn more about cookies">
@@ -122,43 +120,82 @@
     </a>
   </section>
 
-  <!-- ====== FOOTER ====== -->
+  <!-- Footer -->
   <footer id="footer"></footer>
 
-  <!-- ====== APP SCRIPT ====== -->
+  <!-- App script -->
   <script src="/script.js" defer></script>
 
-  <!-- ====== PATCH: ensure hero CTA get proper classes even if script.js renders raw links ====== -->
+  <!-- Theme toggle (independent) -->
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // Keep aria-pressed in sync for theme toggle
-      var btn = document.getElementById('theme-toggle');
-      if (btn) {
-        var pressed = document.documentElement.getAttribute('data-theme') === 'dark';
-        btn.setAttribute('aria-pressed', String(pressed));
+    (function () {
+      var DOC = document.documentElement;
+      var BODY = document.body;
+      var TOGGLE;
+
+      function currentTheme() {
+        try {
+          var saved = localStorage.getItem('theme');
+          if (saved === 'dark' || saved === 'light') return saved;
+        } catch (e) {}
+        return DOC.getAttribute('data-theme') || 'dark';
       }
 
-      // CTA auto-class patch: first -> primary, second -> outline
-      var root = document.getElementById('content');
-      if (!root) return;
-      var rows = root.querySelectorAll('.hero-cta');
-      rows.forEach(function (row) {
-        var links = row.querySelectorAll('a');
-        if (!links.length) return;
-        // if author already provided .button classes — respect them
-        links.forEach(function(a){ if(!a.classList.contains('button')) a.classList.add('button'); });
-        if (links[0] && !links[0].classList.contains('button-primary')) {
-          links[0].classList.add('button-primary');
+      function setTheme(theme, fade) {
+        if (fade) { BODY.classList.add('theme-fade'); void BODY.offsetHeight; }
+        DOC.setAttribute('data-theme', theme);
+        try { localStorage.setItem('theme', theme); } catch (e) {}
+        if (TOGGLE) {
+          TOGGLE.setAttribute('aria-pressed', String(theme === 'dark'));
+          TOGGLE.textContent = theme === 'dark' ? '🌙' : '☀️';
         }
-        if (links[1] && !links[1].classList.contains('button-tertiary')) {
-          links[1].classList.add('button-tertiary');
+        if (fade) {
+          requestAnimationFrame(function(){ BODY.classList.add('theme-fade-active'); });
+          setTimeout(function(){ BODY.classList.remove('theme-fade','theme-fade-active'); }, 450);
         }
+      }
+
+      function toggleTheme(){ setTheme(currentTheme()==='dark' ? 'light' : 'dark', true); }
+
+      document.addEventListener('DOMContentLoaded', function(){
+        TOGGLE = document.getElementById('theme-toggle');
+        setTheme(currentTheme(), false);
+        if (TOGGLE) TOGGLE.addEventListener('click', toggleTheme);
       });
-    });
+    })();
   </script>
 
-  <!-- ====== ANALYTICS (blocked by Cookiebot until Statistics consent) ====== -->
-  <!-- Google Analytics 4 -->
+  <!-- CTA class enhancer (handles async renders) -->
+  <script>
+    (function(){
+      function enhance(root){
+        if (!root) return;
+        root.querySelectorAll('.hero-cta').forEach(function(row){
+          var a = row.querySelectorAll('a');
+          if (!a.length) return;
+          a.forEach(function(el){ if(!el.classList.contains('button')) el.classList.add('button'); });
+          if (a[0] && !a[0].classList.contains('button-primary'))  a[0].classList.add('button-primary');
+          if (a[1] && !a[1].classList.contains('button-tertiary')) a[1].classList.add('button-tertiary');
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', function(){
+        var content = document.getElementById('content');
+        enhance(content);
+        if ('MutationObserver' in window && content) {
+          var mo = new MutationObserver(function(m){
+            for (var i=0;i<m.length;i++){
+              if (m[i].addedNodes && m[i].addedNodes.length){ enhance(content); break; }
+            }
+          });
+          mo.observe(content, { childList:true, subtree:true });
+        }
+        setTimeout(function(){ enhance(document.getElementById('content')); }, 800);
+      });
+    })();
+  </script>
+
+  <!-- Analytics (blocked by Cookiebot: Statistics) -->
   <script type="text/plain" data-cookiecategory="statistics" async
           src="https://www.googletagmanager.com/gtag/js?id=G-TTR3N0XBBC"></script>
   <script type="text/plain" data-cookiecategory="statistics">
@@ -168,12 +205,10 @@
     gtag('config', 'G-TTR3N0XBBC');
   </script>
 
-  <!-- Yandex.Metrica -->
   <script type="text/plain" data-cookiecategory="statistics">
     (function(m,e,t,r,i,k,a){
       m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
       m[i].l=1*new Date();
-      // prevent duplicate insertion
       for (var j = 0; j < e.scripts.length; j++) { if (e.scripts[j].src === r) { return; } }
       k=e.createElement(t), a=e.getElementsByTagName(t)[0];
       k.async=1; k.src=r; a.parentNode.insertBefore(k,a);
@@ -193,6 +228,3 @@
   </noscript>
 </body>
 </html>
-
-
-
