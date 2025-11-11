@@ -1,3 +1,6 @@
+/* =========================
+   THEME TOKENS
+========================= */
 :root {
   --bg-dark: rgb(29, 29, 31);
   --text-dark: rgb(245, 245, 247);
@@ -8,24 +11,16 @@
   --transition: 0.4s ease-in-out;
 }
 
-/* Global color transition for theme switch */
-html {
-  transition: background-color var(--transition), color var(--transition);
-}
+/* Theme switch transition */
+html { transition: background-color var(--transition), color var(--transition); }
 
-/* Theme: dark */
-[data-theme="dark"] {
-  background-color: var(--bg-dark);
-  color: var(--text-dark);
-}
+/* Dark / Light */
+[data-theme="dark"]  { background-color: var(--bg-dark);  color: var(--text-dark); }
+[data-theme="light"] { background-color: var(--bg-light); color: var(--text-light); }
 
-/* Theme: light */
-[data-theme="light"] {
-  background-color: var(--bg-light);
-  color: var(--text-light);
-}
-
-/* Page baseline layout */
+/* =========================
+   BASE LAYOUT
+========================= */
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
@@ -33,19 +28,16 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  overflow-x: hidden;  /* prevent accidental horizontal scroll */
+  overflow-x: hidden;
 }
 
-/* Fade animation during theme change */
-body.theme-fade {
-  opacity: 0;
-  transition: opacity var(--transition);
-}
-body.theme-fade.theme-fade-active {
-  opacity: 1;
-}
+/* Theme fade helper */
+body.theme-fade { opacity: 0; transition: opacity var(--transition); }
+body.theme-fade.theme-fade-active { opacity: 1; }
 
-/* Top bar wrapper */
+/* =========================
+   TOP BAR & CONTROLS
+========================= */
 .top-bar {
   width: 100%;
   display: flex;
@@ -53,7 +45,6 @@ body.theme-fade.theme-fade-active {
   padding: 1rem;
 }
 
-/* Controls container (language + theme) */
 .controls {
   display: flex;
   gap: 1rem;
@@ -62,17 +53,9 @@ body.theme-fade.theme-fade-active {
   padding: 0.5rem 1rem;
   backdrop-filter: blur(10px);
 }
+[data-theme="light"] .controls { background: var(--panel-bg-light); }
 
-/* Controls background in light theme */
-[data-theme="light"] .controls {
-  background: var(--panel-bg-light);
-}
-
-/* Language selector group */
-.language-selector {
-  display: flex;
-  gap: 0.5rem;
-}
+.language-selector { display: flex; gap: 0.5rem; }
 
 /* Language buttons */
 .lang-btn {
@@ -85,19 +68,10 @@ body.theme-fade.theme-fade-active {
   cursor: pointer;
   transition: background-color var(--transition), color var(--transition);
 }
+.lang-btn.active { background: currentColor; color: var(--bg-dark); }
+[data-theme="light"] .lang-btn.active { color: var(--bg-light); }
 
-/* Active language button */
-.lang-btn.active {
-  background: currentColor;
-  color: var(--bg-dark);
-}
-
-/* Active language in light theme */
-[data-theme="light"] .lang-btn.active {
-  color: var(--bg-light);
-}
-
-/* Theme toggle button */
+/* Theme toggle */
 #theme-toggle {
   background: transparent;
   border: none;
@@ -106,11 +80,11 @@ body.theme-fade.theme-fade-active {
   color: inherit;
   transition: transform 0.3s ease-in-out;
 }
-#theme-toggle:hover {
-  transform: rotate(20deg);
-}
+#theme-toggle:hover { transform: rotate(20deg); }
 
-/* Main content area */
+/* =========================
+   MAIN CONTENT
+========================= */
 main {
   text-align: center;
   margin-top: 3rem;
@@ -119,46 +93,32 @@ main {
   transition: color var(--transition);
 }
 
-/* Inner sections */
-.inner-section {
-  margin-bottom: 2rem;
-  transition: opacity var(--transition), transform var(--transition);
-}
+.inner-section { margin-bottom: 2rem; transition: opacity var(--transition), transform var(--transition); }
+.fade { opacity: 0; transform: translateY(10px); transition: opacity var(--transition), transform var(--transition); }
+.fade.show { opacity: 1; transform: translateY(0); }
 
-/* Appear/fade helpers */
-.fade {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity var(--transition), transform var(--transition);
-}
+/* =========================
+   HERO PORTRAIT & CTA
+========================= */
 
-.fade.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ================================
-   HERO portrait and CTA (call-to-action)
-   ================================ */
-
-/* Portrait figure directly under hero text, centered */
+/* Portrait container */
 .portrait-figure {
   margin: 16px 0 0;
   display: flex;
   justify-content: center;
 }
 
-/* Square-ish portrait, responsive width */
+/* Responsive portrait image */
 .portrait-img {
   display: block;
-  width: clamp(260px, 28vw, 560px); /* up to ~560px on desktop */
-  height: auto;                     /* keep aspect ratio */
+  width: clamp(260px, 28vw, 560px);
+  height: auto;
   border-radius: 18px;
   box-shadow: 0 12px 30px rgba(0,0,0,.12), 0 2px 6px rgba(0,0,0,.06);
-  object-fit: cover;                /* safety if height is constrained somewhere */
+  object-fit: cover;
 }
 
-/* CTA buttons row under the portrait */
+/* CTA row */
 .hero-cta {
   margin-top: 14px;
   display: flex;
@@ -168,37 +128,25 @@ main {
   flex-wrap: wrap;
 }
 
-/* CTA buttons row under the portrait */
-.hero-cta {
-  margin-top: 14px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 13px;
-  flex-wrap: wrap;
-}
-
-/* Apple-like buttons (scoped to hero only) <a> */
+/* Apple-like CTA buttons (scoped to hero) */
 .hero-cta a.button {
   text-decoration: none !important;
   cursor: pointer;
   display: inline-block;
-  white-space: normal;                  /* allow wrapping on small screens */
+  white-space: normal;
 
   border-radius: 980px;
+  border: 1px solid transparent;
 
-  /* responsive font size for small screens */
+  /* Responsive type & padding */
   font-size: clamp(15px, 4vw, 17px);
-
   line-height: 1.17648;
   font-weight: 400;
   letter-spacing: -.022em;
-  /* font inherits from body (system-ui) */
+  padding: clamp(9px, 2.5vw, 11px) clamp(16px, 4vw, 21px);
 
-  border: 1px solid transparent;
-  padding: clamp(9px, 2.5vw, 11px) clamp(16px, 4vw, 21px); /* responsive padding */
-  max-width: 100%;                     /* never overflow container */
-  box-sizing: border-box;              /* include padding in width */
+  max-width: 100%;
+  box-sizing: border-box;
 
   transition:
     box-shadow .2s ease,
@@ -208,44 +156,98 @@ main {
     border-color .2s ease;
 }
 
-/* Primary = blue filled (#0071e3) */
+/* Primary (filled blue) */
 .hero-cta a.button.button-primary {
-  background: rgb(0,113,227);
+  background: #0071e3;
   border-color: transparent;
   color: #fff;
 }
-.hero-cta a.button.button-primary:hover {
-  box-shadow: 0 6px 14px rgba(0,0,0,.15);
-}
+.hero-cta a.button.button-primary:hover { box-shadow: 0 6px 14px rgba(0,0,0,.15); }
 
-/* Tertiary = transparent with blue stroke/text (#2997ff) */
+/* Outline (blue stroke) */
 .hero-cta a.button.button-tertiary {
   background: transparent;
-  color: rgb(41,151,255);
-  border-color: rgb(41,151,255);
+  color: #2997ff;
+  border-color: #2997ff;
 }
-.hero-cta a.button.button-tertiary:hover {
-  box-shadow: 0 6px 14px rgba(41,151,255,.25);
-}
+.hero-cta a.button.button-tertiary:hover { box-shadow: 0 6px 14px rgba(41,151,255,.25); }
 
-/* Press/keyboard focus states */
+/* Press / keyboard focus */
 .hero-cta a.button:active { transform: translateY(1px); }
 .hero-cta a.button:focus-visible { outline: 2px solid #0071e3; outline-offset: 2px; }
 
-/* Narrow screens: stack CTA vertically and make buttons full-width */
+/* Stack CTAs on small screens */
 @media (max-width: 600px) {
   .hero-cta {
     flex-direction: column;
     gap: 12px;
     width: 100%;
-    padding: 0 16px;                 /* small horizontal breathing room */
+    padding: 0 16px;
   }
   .hero-cta a.button {
     width: 100%;
-    max-width: 420px;                /* comfortable cap for larger phones */
+    max-width: 420px;
   }
 }
 
+/* =========================
+   COOKIES INLINE LINK (Apple-like)
+   Used on index to link to /cookies
+========================= */
+.cookies-inline{
+  max-width: 700px;
+  margin: 32px auto 0;
+  padding: 0 16px;
+
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
 }
 
+.cookies-inline__title{
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.1428571429;
+  font-weight: 600;
+  letter-spacing: .007em;
+}
 
+.cookies-inline__link{
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  text-decoration: none;
+
+  font-size: 17px;
+  line-height: 1.17648;
+  font-weight: 400;
+  letter-spacing: -.022em;
+
+  color: #2997ff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: transparent;
+  transition: opacity var(--transition), text-decoration-color var(--transition), transform var(--transition);
+}
+
+.cookies-inline__link:hover { text-decoration-color: currentColor; }
+.cookies-inline__link:active { opacity: .8; }
+.cookies-inline__link:focus-visible { outline: 2px solid #0071e3; outline-offset: 1px; border-radius: 4px; }
+
+.cookies-inline__chev{
+  padding-left: .25em;
+  transform: translateX(0);
+  transition: transform var(--transition);
+}
+.cookies-inline__link:hover .cookies-inline__chev{ transform: translateX(2px); }
+
+/* Responsive stack for inline cookies section */
+@media (max-width: 700px){
+  .cookies-inline{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 24px;
+  }
+}
