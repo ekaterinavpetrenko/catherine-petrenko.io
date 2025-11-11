@@ -26,46 +26,14 @@ body {
 body.theme-fade { opacity: 0; transition: opacity var(--transition); }
 body.theme-fade.theme-fade-active { opacity: 1; }
 
-/* ============== TOP BAR & CONTROLS ============== */
-.top-bar { width: 100%; display: flex; justify-content: center; padding: 1rem; }
-.controls {
-  display: flex; gap: 1rem; background: var(--panel-bg-dark);
-  border-radius: 1rem; padding: 0.5rem 1rem; backdrop-filter: blur(10px);
-}
-[data-theme="light"] .controls { background: var(--panel-bg-light); }
-.language-selector { display: flex; gap: 0.5rem; }
-.lang-btn {
-  background: transparent; border: 1px solid currentColor; border-radius: 0.75rem;
-  padding: 0.4rem 0.8rem; color: inherit; font-weight: 500; cursor: pointer;
-  transition: background-color var(--transition), color var(--transition);
-}
-.lang-btn.active { background: currentColor; color: var(--bg-dark); }
-[data-theme="light"] .lang-btn.active { color: var(--bg-light); }
-#theme-toggle {
-  background: transparent; border: none; font-size: 1.2rem; cursor: pointer;
-  color: inherit; transition: transform 0.3s ease-in-out;
-}
-#theme-toggle:hover { transform: rotate(20deg); }
+/* Theme fade helper */
+body.theme-fade { opacity: 0; transition: opacity var(--transition); }
+body.theme-fade.theme-fade-active { opacity: 1; }
 
-/* ============== MAIN CONTENT ============== */
-main { text-align: center; margin-top: 3rem; max-width: 700px; padding: 1rem; transition: color var(--transition); }
-.inner-section { margin-bottom: 2rem; transition: opacity var(--transition), transform var(--transition); }
-.fade { opacity: 0; transform: translateY(10px); transition: opacity var(--transition), transform var(--transition); }
-.fade.show { opacity: 1; transform: translateY(0); }
-
-/* ============== HERO (PORTRAIT & CTA) ============== */
-.portrait-figure { margin: 16px 0 0; display: flex; justify-content: center; }
-.portrait-img {
-  display: block; width: clamp(260px, 28vw, 560px); height: auto;
-  border-radius: 18px;
-  box-shadow: 0 12px 30px rgba(0,0,0,.12), 0 2px 6px rgba(0,0,0,.06);
-  object-fit: cover;
-}
-
-/* CTA block matches portrait width */
-.hero-cta {
-  max-width: clamp(260px, 28vw, 560px);
-  margin: 14px auto 0;
+/* =========================
+   TOP BAR & CONTROLS
+.top-bar {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -80,38 +48,149 @@ main { text-align: center; margin-top: 3rem; max-width: 700px; padding: 1rem; tr
   box-sizing: border-box; width: 100%;
   transition: box-shadow .2s, transform .06s, background-color .2s, color .2s, border-color .2s;
 }
+[data-theme="light"] .controls { background: var(--panel-bg-light); }
 
-/* Primary (filled) */
+.language-selector { display: flex; gap: 0.5rem; }
+
+/* Language buttons */
+.lang-btn {
+  background: transparent;
+  border: 1px solid currentColor;
+  border-radius: 0.75rem;
+  padding: 0.4rem 0.8rem;
+  color: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition);
+}
+.lang-btn.active { background: currentColor; color: var(--bg-dark); }
+[data-theme="light"] .lang-btn.active { color: var(--bg-light); }
+
+/* Theme toggle */
+#theme-toggle {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: inherit;
+  transition: transform 0.3s ease-in-out;
+}
+#theme-toggle:hover { transform: rotate(20deg); }
+
+/* =========================
+   MAIN CONTENT
+main {
+  text-align: center;
+  margin-top: 3rem;
+  max-width: 700px;
+  padding: 1rem;
+  transition: color var(--transition);
+}
+
+.inner-section { margin-bottom: 2rem; transition: opacity var(--transition), transform var(--transition); }
+.fade { opacity: 0; transform: translateY(10px); transition: opacity var(--transition), transform var(--transition); }
+.fade.show { opacity: 1; transform: translateY(0); }
+
+/* =========================
+   HERO PORTRAIT & CTA
+
+/* Portrait container */
+.portrait-figure {
+  margin: 16px 0 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* Responsive portrait image */
+.portrait-img {
+  display: block;
+  width: clamp(260px, 28vw, 560px);
+  height: auto;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.12), 0 2px 6px rgba(0,0,0,.06);
+  object-fit: cover;
+}
+
+/* CTA row */
+.hero-cta {
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
+  flex-wrap: wrap;
+}
+
+/* Apple-like CTA buttons (scoped to hero) */
+.hero-cta a.button {
+  text-decoration: none !important;
+  cursor: pointer;
+  display: inline-block;
+  white-space: normal;
+
+  border-radius: 980px;
+  border: 1px solid transparent;
+
+  /* Responsive type & padding */
+  font-size: clamp(15px, 4vw, 17px);
+  line-height: 1.17648;
+  font-weight: 400;
+  letter-spacing: -.022em;
+  padding: clamp(9px, 2.5vw, 11px) clamp(16px, 4vw, 21px);
+
+  max-width: 100%;
+  box-sizing: border-box;
+
+  transition:
+    box-shadow .2s ease,
+    transform .06s ease,
+    background-color .2s ease,
+    color .2s ease,
+    border-color .2s ease;
+}
+
+/* Primary (filled blue) */
 .hero-cta a.button.button-primary {
-  background: #0071e3; border-color: #0071e3; color: #fff;
+  background: #0071e3;
+  border-color: transparent;
+  color: #fff;
 }
-.hero-cta a.button.button-primary:hover  { filter: brightness(.95); }
-.hero-cta a.button.button-primary:active { filter: brightness(.90); }
-.hero-cta a.button.button-primary:focus-visible { outline: 2px solid #0071e3; outline-offset: 1px; }
+.hero-cta a.button.button-primary:hover { box-shadow: 0 6px 14px rgba(0,0,0,.15); }
 
-/* Outline (Telegram/right) → filled on hover/focus */
+/* Outline (blue stroke) */
 .hero-cta a.button.button-tertiary {
-  background: transparent; color: #2997ff; border-color: #2997ff;
+  background: transparent;
+  color: #2997ff;
+  border-color: #2997ff;
 }
-.hero-cta a.button.button-tertiary:hover,
-.hero-cta a.button.button-tertiary:focus-visible {
-  background: #0071e3; border-color: #0071e3; color: #fff;
-}
-.hero-cta a.button.button-tertiary:active {
-  background: #0066cc; border-color: #0066cc; color: #fff;
+.hero-cta a.button.button-tertiary:hover { box-shadow: 0 6px 14px rgba(41,151,255,.25); }
+
+/* Press / keyboard focus */
+.hero-cta a.button:active { transform: translateY(1px); }
+.hero-cta a.button:focus-visible { outline: 2px solid #0071e3; outline-offset: 2px; }
+
+/* Stack CTAs on small screens */
+@media (max-width: 600px) {
+  .hero-cta {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    padding: 0 16px;
+  }
+  .hero-cta a.button {
+    width: 100%;
+    max-width: 420px;
+  }
 }
 
-/* >=700px: inline pills with intrinsic widths */
-@media (min-width: 700px) {
-  .hero-cta { flex-direction: row; justify-content: center; gap: 13px; }
-  .hero-cta a.button { width: auto; }
-}
-
-/* ============== COOKIES INLINE LINK ============== */
+/* =========================
+   COOKIES INLINE LINK (Apple-like)
+   Used on index to link to /cookies
 .cookies-inline{
   max-width: 700px;
   margin: 32px auto 0;
   padding: 0 16px;
+
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -130,20 +209,18 @@ main { text-align: center; margin-top: 3rem; max-width: 700px; padding: 1rem; tr
   display: inline-flex;
   align-items: center;
   white-space: nowrap;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  text-decoration-color: transparent;
+  text-decoration: none;
 
   font-size: 17px;
   line-height: 1.17648;
   font-weight: 400;
   letter-spacing: -.022em;
-  color: #2997ff;
 
-  transition:
-    text-decoration-color var(--transition),
-    opacity var(--transition),
-    transform var(--transition);
+  color: #2997ff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: transparent;
+  transition: opacity var(--transition), text-decoration-color var(--transition), transform var(--transition);
 }
 
 .cookies-inline__link:hover { text-decoration-color: currentColor; }
@@ -157,13 +234,12 @@ main { text-align: center; margin-top: 3rem; max-width: 700px; padding: 1rem; tr
 }
 .cookies-inline__link:hover .cookies-inline__chev{ transform: translateX(2px); }
 
-@media (max-width: 700px) {
-  .cookies-inline {
+/* Responsive stack for inline cookies section */
+@media (max-width: 700px){
+  .cookies-inline{
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
     margin-top: 24px;
   }
 }
-
-
