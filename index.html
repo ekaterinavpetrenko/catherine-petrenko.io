@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <!-- Early theme apply: use saved theme or default to dark (avoids flash) -->
+  <!-- Early theme apply: use saved theme or default dark (prevents flash) -->
   <script>
     (function () {
       try {
@@ -18,21 +18,7 @@
   <!-- ====== BASIC SEO ====== -->
   <title>Catherine Petrenko — Project & Product Manager</title>
   <meta name="description" content="Project & Product Manager. I build systems that keep working even when people rest.">
-
-  <!-- Canonical must point to the root user-site -->
   <link rel="canonical" href="https://catherine-petrenko.github.io/">
-
-  <!-- Cookiebot -->
-  <script id="Cookiebot" 
-    src="https://consent.cookiebot.com/uc.js" 
-    data-cbid="d80b5793-ad70-40a1-8679-6f0e44e93e72" 
-    data-blockingmode="auto" 
-    type="text/javascript">
-  </script>
-  <script id="CookieDeclaration" 
-    src="https://consent.cookiebot.com/d80b5793-ad70-40a1-8679-6f0e44e93e72/cd.js" 
-    type="text/javascript" async>
-  </script>
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -47,19 +33,9 @@
   <meta name="twitter:description" content="I build systems that keep working even when people rest.">
   <meta name="twitter:image" content="https://catherine-petrenko.github.io/assets/img/og-cover.jpg">
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TTR3N0XBBC"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-TTR3N0XBBC');
-  </script>
-  
   <!-- Yandex verification -->
-  <meta name="yandex-verification" content="5e4908de6d3639d6" />
-  
+  <meta name="yandex-verification" content="5e4908de6d3639d6">
+
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
   {
@@ -76,15 +52,30 @@
   }
   </script>
 
-  <!-- LCP image preload: use root-relative or dot-relative paths on the user-site -->
+  <!-- LCP image preload (paths must match rendered <img>) -->
   <link rel="preload" as="image"
         href="/assets/img/catherine-hero.jpg"
         imagesrcset="/assets/img/catherine-hero@2x.jpg 2x">
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="./styles.css">
+  <!-- Cookiebot (MUST be before any analytics); auto-blocking enabled -->
+  <script id="Cookiebot"
+    src="https://consent.cookiebot.com/uc.js"
+    data-cbid="d80b5793-ad70-40a1-8679-6f0e44e93e72"
+    data-blockingmode="auto"
+    type="text/javascript"></script>
 
-  <!-- Hint that both color schemes are supported -->
+  <!-- Google Analytics 4 (blocked until consent: Statistics) -->
+  <script type="text/plain" data-cookiecategory="statistics" async
+          src="https://www.googletagmanager.com/gtag/js?id=G-TTR3N0XBBC"></script>
+  <script type="text/plain" data-cookiecategory="statistics">
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-TTR3N0XBBC');
+  </script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/styles.css">
   <meta name="color-scheme" content="dark light">
 </head>
 
@@ -93,11 +84,11 @@
   <header id="top" class="site-header">
     <div class="controls">
       <div class="language-selector">
-        <button class="lang-btn active" data-lang="en">EN</button>
-        <button class="lang-btn" data-lang="es">ES</button>
-        <button class="lang-btn" data-lang="ru">RU</button>
+        <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+        <button class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+        <button class="lang-btn" data-lang="ru" aria-pressed="false">RU</button>
       </div>
-      <button id="theme-toggle" aria-label="Toggle theme">☀️ / 🌙</button>
+      <button id="theme-toggle" aria-label="Toggle theme" aria-pressed="true">🌙</button>
     </div>
   </header>
 
@@ -111,12 +102,50 @@
     </noscript>
   </main>
 
+  <!-- Cookies section: declaration + manual reopen button -->
+  <section id="cookies" style="margin:40px auto; max-width:880px; padding:0 16px;">
+    <h3>Cookies</h3>
+    <p>
+      <button type="button" onclick="if(window.Cookiebot){Cookiebot.renew();}">Change consent / Open banner</button>
+    </p>
+    <!-- Cookie declaration (optional but nice for transparency) -->
+    <script id="CookieDeclaration"
+      src="https://consent.cookiebot.com/d80b5793-ad70-40a1-8679-6f0e44e93e72/cd.js"
+      type="text/javascript" async></script>
+  </section>
+
   <footer id="footer"></footer>
 
   <!-- App Script -->
-  <script src="./script.js" defer></script>
+  <script src="/script.js" defer></script>
+
+  <!-- Yandex.Metrica (place at END of body). Blocked until consent via Cookiebot -->
+  <script type="text/plain" data-cookiecategory="statistics">
+    (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      // prevent duplicate insertion
+      for (var j = 0; j < e.scripts.length; j++) { if (e.scripts[j].src === r) { return; } }
+      k=e.createElement(t), a=e.getElementsByTagName(t)[0];
+      k.async=1; k.src=r; a.parentNode.insertBefore(k,a);
+    })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=105226998', 'ym');
+
+    ym(105226998, 'init', {
+      ssr:true,
+      webvisor:true,
+      clickmap:true,
+      ecommerce:"dataLayer",
+      accurateTrackBounce:true,
+      trackLinks:true
+    });
+  </script>
+  <noscript>
+    <div><img src="https://mc.yandex.ru/watch/105226998" style="position:absolute; left:-9999px;" alt=""></div>
+  </noscript>
+  <!-- /Yandex.Metrica -->
 </body>
 </html>
+
 
 
 
