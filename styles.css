@@ -30,8 +30,7 @@ body.theme-fade.theme-fade-active { opacity: 1; }
 body.theme-fade { opacity: 0; transition: opacity var(--transition); }
 body.theme-fade.theme-fade-active { opacity: 1; }
 
-/* =========================
-   TOP BAR & CONTROLS
+/* ========================= TOP BAR & CONTROLS============== */
 .top-bar {
   width: 100%;
   display: flex;
@@ -78,7 +77,7 @@ body.theme-fade.theme-fade-active { opacity: 1; }
 #theme-toggle:hover { transform: rotate(20deg); }
 
 /* =========================
-   MAIN CONTENT
+   MAIN CONTENT============== */
 main {
   text-align: center;
   margin-top: 3rem;
@@ -92,7 +91,7 @@ main {
 .fade.show { opacity: 1; transform: translateY(0); }
 
 /* =========================
-   HERO PORTRAIT & CTA
+   HERO PORTRAIT & CTA============== */
 
 /* Portrait container */
 .portrait-figure {
@@ -185,7 +184,7 @@ main {
 
 /* =========================
    COOKIES INLINE LINK (Apple-like)
-   Used on index to link to /cookies
+   Used on index to link to /cookies============== */
 .cookies-inline{
   max-width: 700px;
   margin: 32px auto 0;
@@ -243,3 +242,4 @@ main {
     margin-top: 24px;
   }
 }
+
