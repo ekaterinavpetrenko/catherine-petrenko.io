@@ -1,27 +1,198 @@
-<!DOCTYPE html>
+<!-- =============================================
+  index.html — Catherine Petrenko (consent-ready)
+  - Clean section dividers
+  - Full SEO (OG/Twitter/JSON-LD/Yandex)
+  - Cookiebot banner only (no declaration)
+  - Analytics deferred to end of <body>, blocked until consent
+  - A11y: aria-label/aria-pressed + safe Cookiebot renew
+  - CTA auto-class patch (keeps your hero buttons styled)
+============================================== -->
+<!doctype html>
 <html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Catherine Petrenko — Portfolio</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <!-- ====== EARLY THEME APPLY (prevents flash) ====== -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        var theme = saved || 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch(e) {}
+    })();
+  </script>
+
+  <!-- ====== BASIC SEO ====== -->
+  <title>Catherine Petrenko — Project & Product Manager</title>
+  <meta name="description" content="Project & Product Manager. I build systems that keep working even when people rest.">
+  <link rel="canonical" href="https://catherine-petrenko.github.io/">
+  <meta name="yandex-verification" content="5e4908de6d3639d6">
+
+  <!-- ====== OPEN GRAPH ====== -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Catherine Petrenko — Project & Product Manager">
+  <meta property="og:description" content="I build systems that keep working even when people rest.">
+  <meta property="og:url" content="https://catherine-petrenko.github.io/">
+  <meta property="og:image" content="https://catherine-petrenko.github.io/assets/img/og-cover.jpg">
+
+  <!-- ====== TWITTER CARD ====== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Catherine Petrenko — Project & Product Manager">
+  <meta name="twitter:description" content="I build systems that keep working even when people rest.">
+  <meta name="twitter:image" content="https://catherine-petrenko.github.io/assets/img/og-cover.jpg">
+
+  <!-- ====== STRUCTURED DATA (JSON-LD) ====== -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Catherine Petrenko",
+    "jobTitle":"Project & Product Manager",
+    "url":"https://catherine-petrenko.github.io/",
+    "image":"https://catherine-petrenko.github.io/assets/img/catherine-hero.jpg",
+    "sameAs":[
+      "https://www.linkedin.com/in/catherine-petrenko/",
+      "https://t.me/linoteia"
+    ]
+  }
+  </script>
+
+  <!-- ====== PERFORMANCE HINTS ====== -->
+  <!-- LCP image preload (paths must match rendered <img>) -->
+  <link rel="preload" as="image"
+        href="/assets/img/catherine-hero.jpg"
+        imagesrcset="/assets/img/catherine-hero@2x.jpg 2x" fetchpriority="high">
+
+  <!-- ====== CONSENT (Cookiebot banner + autoblocking) ====== -->
+  <script id="Cookiebot"
+    src="https://consent.cookiebot.com/uc.js"
+    data-cbid="d80b5793-ad70-40a1-8679-6f0e44e93e72"
+    data-blockingmode="auto"
+    type="text/javascript"></script>
+
+  <!-- ====== STYLES ====== -->
+  <meta name="color-scheme" content="dark light">
+  <link rel="stylesheet" href="/styles.css">
+  <!-- if you use separated cookies.css, keep this line; otherwise remove -->
+  <link rel="stylesheet" href="/cookies.css">
 </head>
 <body>
-  <header class="top-bar">
+
+  <!-- ====== CONTROLS (language + theme) ====== -->
+  <header id="top" class="site-header">
     <div class="controls">
-      <div class="language-selector">
-        <button class="lang-btn active" data-lang="en">EN</button>
-        <button class="lang-btn" data-lang="es">ES</button>
-        <button class="lang-btn" data-lang="ru">RU</button>
+      <div class="language-selector" aria-label="Language selector">
+        <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+        <button class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+        <button class="lang-btn" data-lang="ru" aria-pressed="false">RU</button>
       </div>
-      <button id="theme-toggle">☀️ / 🌙</button>
+      <button id="theme-toggle" aria-label="Toggle theme" aria-pressed="true">🌙</button>
     </div>
   </header>
 
-  <main id="content" class="fade"></main>
+  <!-- ====== APP CONTENT ROOT ====== -->
+  <main id="content" class="fade">
+    <!-- Progressive fallback for no-JS -->
+    <noscript>
+      <section class="nojs-hero inner-section">
+        <h1>Catherine Petrenko</h1>
+        <p>Project &amp; Product Manager. I build systems that keep working even when people rest.</p>
 
-  <script src="script.js" defer></script>
+        <figure class="portrait-figure">
+          <img class="portrait-img" src="/assets/img/catherine-hero.jpg"
+               srcset="/assets/img/catherine-hero@2x.jpg 2x"
+               alt="Portrait of Catherine Petrenko">
+        </figure>
+
+        <div class="hero-cta">
+          <a class="button button-primary" href="https://www.linkedin.com/in/catherine-petrenko/">LinkedIn</a>
+          <a class="button button-tertiary" href="https://t.me/linoteia">Telegram</a>
+        </div>
+      </section>
+    </noscript>
+  </main>
+
+  <!-- ====== COOKIES INLINE (index link to /cookies) ====== -->
+  <section class="cookies-inline" aria-label="Cookies">
+    <h2 class="cookies-inline__title">Cookies. Your choice.</h2>
+    <a class="cookies-inline__link" href="/cookies" aria-label="Learn more about cookies">
+      Learn more about cookies <span class="cookies-inline__chev">›</span>
+    </a>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer id="footer"></footer>
+
+  <!-- ====== APP SCRIPT ====== -->
+  <script src="/script.js" defer></script>
+
+  <!-- ====== PATCH: ensure hero CTA get proper classes even if script.js renders raw links ====== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Keep aria-pressed in sync for theme toggle
+      var btn = document.getElementById('theme-toggle');
+      if (btn) {
+        var pressed = document.documentElement.getAttribute('data-theme') === 'dark';
+        btn.setAttribute('aria-pressed', String(pressed));
+      }
+
+      // CTA auto-class patch: first -> primary, second -> outline
+      var root = document.getElementById('content');
+      if (!root) return;
+      var rows = root.querySelectorAll('.hero-cta');
+      rows.forEach(function (row) {
+        var links = row.querySelectorAll('a');
+        if (!links.length) return;
+        // if author already provided .button classes — respect them
+        links.forEach(function(a){ if(!a.classList.contains('button')) a.classList.add('button'); });
+        if (links[0] && !links[0].classList.contains('button-primary')) {
+          links[0].classList.add('button-primary');
+        }
+        if (links[1] && !links[1].classList.contains('button-tertiary')) {
+          links[1].classList.add('button-tertiary');
+        }
+      });
+    });
+  </script>
+
+  <!-- ====== ANALYTICS (blocked by Cookiebot until Statistics consent) ====== -->
+  <!-- Google Analytics 4 -->
+  <script type="text/plain" data-cookiecategory="statistics" async
+          src="https://www.googletagmanager.com/gtag/js?id=G-TTR3N0XBBC"></script>
+  <script type="text/plain" data-cookiecategory="statistics">
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-TTR3N0XBBC');
+  </script>
+
+  <!-- Yandex.Metrica -->
+  <script type="text/plain" data-cookiecategory="statistics">
+    (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      // prevent duplicate insertion
+      for (var j = 0; j < e.scripts.length; j++) { if (e.scripts[j].src === r) { return; } }
+      k=e.createElement(t), a=e.getElementsByTagName(t)[0];
+      k.async=1; k.src=r; a.parentNode.insertBefore(k,a);
+    })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=105226998', 'ym');
+
+    ym(105226998, 'init', {
+      ssr:true,
+      webvisor:true,
+      clickmap:true,
+      ecommerce:"dataLayer",
+      accurateTrackBounce:true,
+      trackLinks:true
+    });
+  </script>
+  <noscript>
+    <div><img src="https://mc.yandex.ru/watch/105226998" style="position:absolute; left:-9999px;" alt=""></div>
+  </noscript>
 </body>
 </html>
+
 
 

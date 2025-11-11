@@ -2,9 +2,9 @@ name: CI & Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, portrait-and-basic-seo ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, portrait-and-basic-seo ]
 
 permissions:
   contents: read
@@ -21,29 +21,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 🧾 Получаем код
       - name: Checkout
         uses: actions/checkout@v4
 
-      # 🧰 Ставим Node.js (можно поменять версию при необходимости)
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
 
-      # 📦 Ставим зависимости
       - name: Install deps
         run: npm ci
 
-      # 🧪 Запускаем тесты
       - name: Run tests
         run: npm test -- --ci
 
   deploy:
     name: Deploy to GitHub Pages
     needs: test
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    # Деплой теперь из main ИЛИ portrait-and-basic-seo
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/portrait-and-basic-seo')
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -53,17 +50,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # ➕ (опционально) если у тебя есть сборка (webpack/vite), вставь шаг сборки здесь
+      # ➕ (опционально) вставь шаг сборки здесь, если есть сборка
 
-      # 📦 Подготавливаем артефакт сайта
-      # Если сайт лежит в корне репо (index.html, styles.css, script.js),
-      # то можно передать path: '.' как есть.
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
 
-      # 🚀 Публикуем
       - name: Deploy to Pages
         id: deployment
         uses: actions/deploy-pages@v4

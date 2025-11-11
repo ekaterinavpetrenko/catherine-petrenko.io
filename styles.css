@@ -1,6 +1,4 @@
-/* =========================
-   THEME TOKENS
-========================= */
+/* ============== THEME TOKENS ============== */
 :root {
   --bg-dark: rgb(29, 29, 31);
   --text-dark: rgb(245, 245, 247);
@@ -11,16 +9,11 @@
   --transition: 0.4s ease-in-out;
 }
 
-/* Theme switch transition */
 html { transition: background-color var(--transition), color var(--transition); }
-
-/* Dark / Light */
 [data-theme="dark"]  { background-color: var(--bg-dark);  color: var(--text-dark); }
 [data-theme="light"] { background-color: var(--bg-light); color: var(--text-light); }
 
-/* =========================
-   BASE LAYOUT
-========================= */
+/* ============== BASE LAYOUT ============== */
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
@@ -30,6 +23,8 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 }
+body.theme-fade { opacity: 0; transition: opacity var(--transition); }
+body.theme-fade.theme-fade-active { opacity: 1; }
 
 /* Theme fade helper */
 body.theme-fade { opacity: 0; transition: opacity var(--transition); }
@@ -37,21 +32,21 @@ body.theme-fade.theme-fade-active { opacity: 1; }
 
 /* =========================
    TOP BAR & CONTROLS
-========================= */
 .top-bar {
   width: 100%;
   display: flex;
-  justify-content: center;
-  padding: 1rem;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.controls {
-  display: flex;
-  gap: 1rem;
-  background: var(--panel-bg-dark);
-  border-radius: 1rem;
-  padding: 0.5rem 1rem;
-  backdrop-filter: blur(10px);
+/* Apple-like pills (scoped) */
+.hero-cta a.button {
+  display: inline-block; text-decoration: none; cursor: pointer;
+  border-radius: 980px; border: 1px solid transparent;
+  padding: 11px 21px;
+  font-size: 17px; line-height: 1.17648; font-weight: 400; letter-spacing: -.022em;
+  box-sizing: border-box; width: 100%;
+  transition: box-shadow .2s, transform .06s, background-color .2s, color .2s, border-color .2s;
 }
 [data-theme="light"] .controls { background: var(--panel-bg-light); }
 
@@ -84,7 +79,6 @@ body.theme-fade.theme-fade-active { opacity: 1; }
 
 /* =========================
    MAIN CONTENT
-========================= */
 main {
   text-align: center;
   margin-top: 3rem;
@@ -99,7 +93,6 @@ main {
 
 /* =========================
    HERO PORTRAIT & CTA
-========================= */
 
 /* Portrait container */
 .portrait-figure {
@@ -193,7 +186,6 @@ main {
 /* =========================
    COOKIES INLINE LINK (Apple-like)
    Used on index to link to /cookies
-========================= */
 .cookies-inline{
   max-width: 700px;
   margin: 32px auto 0;
