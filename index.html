@@ -4,7 +4,8 @@
   - Full SEO (OG/Twitter/JSON-LD/Yandex)
   - Cookiebot banner only (no declaration)
   - Analytics deferred to end of <body>, blocked until consent
-  - Accessibility: aria-label/aria-pressed + safe Cookiebot renew
+  - A11y: aria-label/aria-pressed + safe Cookiebot renew
+  - CTA auto-class patch (keeps your hero buttons styled)
 ============================================== -->
 <!doctype html>
 <html lang="en" data-theme="dark">
@@ -62,7 +63,7 @@
   <!-- LCP image preload (paths must match rendered <img>) -->
   <link rel="preload" as="image"
         href="/assets/img/catherine-hero.jpg"
-        imagesrcset="/assets/img/catherine-hero@2x.jpg 2x">
+        imagesrcset="/assets/img/catherine-hero@2x.jpg 2x" fetchpriority="high">
 
   <!-- ====== CONSENT (Cookiebot banner + autoblocking) ====== -->
   <script id="Cookiebot"
@@ -74,6 +75,7 @@
   <!-- ====== STYLES ====== -->
   <meta name="color-scheme" content="dark light">
   <link rel="stylesheet" href="/styles.css">
+  <!-- if you use separated cookies.css, keep this line; otherwise remove -->
   <link rel="stylesheet" href="/cookies.css">
 </head>
 <body>
@@ -92,22 +94,32 @@
 
   <!-- ====== APP CONTENT ROOT ====== -->
   <main id="content" class="fade">
+    <!-- Progressive fallback for no-JS -->
     <noscript>
-      <section class="nojs-hero">
+      <section class="nojs-hero inner-section">
         <h1>Catherine Petrenko</h1>
         <p>Project &amp; Product Manager. I build systems that keep working even when people rest.</p>
+
+        <figure class="portrait-figure">
+          <img class="portrait-img" src="/assets/img/catherine-hero.jpg"
+               srcset="/assets/img/catherine-hero@2x.jpg 2x"
+               alt="Portrait of Catherine Petrenko">
+        </figure>
+
+        <div class="hero-cta">
+          <a class="button button-primary" href="https://www.linkedin.com/in/catherine-petrenko/">LinkedIn</a>
+          <a class="button button-tertiary" href="https://t.me/linoteia">Telegram</a>
+        </div>
       </section>
     </noscript>
   </main>
 
-  <!-- ====== COOKIES SECTION (no declaration here) ====== -->
-  <section id="cookies" style="margin:40px auto; max-width:880px; padding:0 16px;">
-    <h3>Cookies</h3>
-    <p>
-      <button type="button" onclick="if(window.Cookiebot){Cookiebot.renew();}">Change consent / Open banner</button>
-      &nbsp;·&nbsp;
-      <a href="/cookies">Cookie details</a>
-    </p>
+  <!-- ====== COOKIES INLINE (index link to /cookies) ====== -->
+  <section class="cookies-inline" aria-label="Cookies">
+    <h2 class="cookies-inline__title">Cookies. Your choice.</h2>
+    <a class="cookies-inline__link" href="/cookies" aria-label="Learn more about cookies">
+      Learn more about cookies <span class="cookies-inline__chev">›</span>
+    </a>
   </section>
 
   <!-- ====== FOOTER ====== -->
@@ -116,8 +128,37 @@
   <!-- ====== APP SCRIPT ====== -->
   <script src="/script.js" defer></script>
 
+  <!-- ====== PATCH: ensure hero CTA get proper classes even if script.js renders raw links ====== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Keep aria-pressed in sync for theme toggle
+      var btn = document.getElementById('theme-toggle');
+      if (btn) {
+        var pressed = document.documentElement.getAttribute('data-theme') === 'dark';
+        btn.setAttribute('aria-pressed', String(pressed));
+      }
+
+      // CTA auto-class patch: first -> primary, second -> outline
+      var root = document.getElementById('content');
+      if (!root) return;
+      var rows = root.querySelectorAll('.hero-cta');
+      rows.forEach(function (row) {
+        var links = row.querySelectorAll('a');
+        if (!links.length) return;
+        // if author already provided .button classes — respect them
+        links.forEach(function(a){ if(!a.classList.contains('button')) a.classList.add('button'); });
+        if (links[0] && !links[0].classList.contains('button-primary')) {
+          links[0].classList.add('button-primary');
+        }
+        if (links[1] && !links[1].classList.contains('button-tertiary')) {
+          links[1].classList.add('button-tertiary');
+        }
+      });
+    });
+  </script>
+
   <!-- ====== ANALYTICS (blocked by Cookiebot until Statistics consent) ====== -->
-  <!-- Google Analytics 4 (blocked until consent: Statistics) -->
+  <!-- Google Analytics 4 -->
   <script type="text/plain" data-cookiecategory="statistics" async
           src="https://www.googletagmanager.com/gtag/js?id=G-TTR3N0XBBC"></script>
   <script type="text/plain" data-cookiecategory="statistics">
@@ -127,8 +168,7 @@
     gtag('config', 'G-TTR3N0XBBC');
   </script>
 
-  <!-- Yandex.Metrica (blocked until consent: Statistics) -->
-  <!-- Note: tag.js loaded with ID in URL; includes duplicate-insert guard -->
+  <!-- Yandex.Metrica -->
   <script type="text/plain" data-cookiecategory="statistics">
     (function(m,e,t,r,i,k,a){
       m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -151,16 +191,8 @@
   <noscript>
     <div><img src="https://mc.yandex.ru/watch/105226998" style="position:absolute; left:-9999px;" alt=""></div>
   </noscript>
-
-  <!-- ====== A11Y TOUCH-UP: keep aria-pressed in sync if script.js hasn't yet ====== -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function(){
-      var btn = document.getElementById('theme-toggle');
-      if (!btn) return;
-      var pressed = document.documentElement.getAttribute('data-theme') === 'dark';
-      btn.setAttribute('aria-pressed', String(pressed));
-    });
-  </script>
 </body>
 </html>
+
+
 
