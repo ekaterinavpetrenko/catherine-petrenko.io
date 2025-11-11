@@ -1,10 +1,18 @@
+<!-- =============================================
+  index.html — Catherine Petrenko (consent-ready)
+  - Clean section dividers
+  - Full SEO (OG/Twitter/JSON-LD/Yandex)
+  - Cookiebot banner only (no declaration)
+  - Analytics deferred to end of <body>, blocked until consent
+  - Accessibility: aria-label/aria-pressed + safe Cookiebot renew
+============================================== -->
 <!doctype html>
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <!-- Early theme apply: use saved theme or default dark (prevents flash) -->
+  <!-- ====== EARLY THEME APPLY (prevents flash) ====== -->
   <script>
     (function () {
       try {
@@ -19,24 +27,22 @@
   <title>Catherine Petrenko — Project & Product Manager</title>
   <meta name="description" content="Project & Product Manager. I build systems that keep working even when people rest.">
   <link rel="canonical" href="https://catherine-petrenko.github.io/">
+  <meta name="yandex-verification" content="5e4908de6d3639d6">
 
-  <!-- Open Graph -->
+  <!-- ====== OPEN GRAPH ====== -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Catherine Petrenko — Project & Product Manager">
   <meta property="og:description" content="I build systems that keep working even when people rest.">
   <meta property="og:url" content="https://catherine-petrenko.github.io/">
   <meta property="og:image" content="https://catherine-petrenko.github.io/assets/img/og-cover.jpg">
 
-  <!-- Twitter -->
+  <!-- ====== TWITTER CARD ====== -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Catherine Petrenko — Project & Product Manager">
   <meta name="twitter:description" content="I build systems that keep working even when people rest.">
   <meta name="twitter:image" content="https://catherine-petrenko.github.io/assets/img/og-cover.jpg">
 
-  <!-- Yandex verification -->
-  <meta name="yandex-verification" content="5e4908de6d3639d6">
-
-  <!-- Structured Data (JSON-LD) -->
+  <!-- ====== STRUCTURED DATA (JSON-LD) ====== -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -52,18 +58,64 @@
   }
   </script>
 
+  <!-- ====== PERFORMANCE HINTS ====== -->
   <!-- LCP image preload (paths must match rendered <img>) -->
   <link rel="preload" as="image"
         href="/assets/img/catherine-hero.jpg"
         imagesrcset="/assets/img/catherine-hero@2x.jpg 2x">
 
-  <!-- Cookiebot (MUST be before any analytics); auto-blocking enabled -->
+  <!-- ====== CONSENT (Cookiebot banner + autoblocking) ====== -->
   <script id="Cookiebot"
     src="https://consent.cookiebot.com/uc.js"
     data-cbid="d80b5793-ad70-40a1-8679-6f0e44e93e72"
     data-blockingmode="auto"
     type="text/javascript"></script>
 
+  <!-- ====== STYLES ====== -->
+  <meta name="color-scheme" content="dark light">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+  <!-- ====== CONTROLS (language + theme) ====== -->
+  <header id="top" class="site-header">
+    <div class="controls">
+      <div class="language-selector" aria-label="Language selector">
+        <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+        <button class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+        <button class="lang-btn" data-lang="ru" aria-pressed="false">RU</button>
+      </div>
+      <button id="theme-toggle" aria-label="Toggle theme" aria-pressed="true">🌙</button>
+    </div>
+  </header>
+
+  <!-- ====== APP CONTENT ROOT ====== -->
+  <main id="content" class="fade">
+    <noscript>
+      <section class="nojs-hero">
+        <h1>Catherine Petrenko</h1>
+        <p>Project &amp; Product Manager. I build systems that keep working even when people rest.</p>
+      </section>
+    </noscript>
+  </main>
+
+  <!-- ====== COOKIES SECTION (no declaration here) ====== -->
+  <section id="cookies" style="margin:40px auto; max-width:880px; padding:0 16px;">
+    <h3>Cookies</h3>
+    <p>
+      <button type="button" onclick="if(window.Cookiebot){Cookiebot.renew();}">Change consent / Open banner</button>
+      &nbsp;·&nbsp;
+      <a href="/cookies">Cookie details</a>
+    </p>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer id="footer"></footer>
+
+  <!-- ====== APP SCRIPT ====== -->
+  <script src="/script.js" defer></script>
+
+  <!-- ====== ANALYTICS (blocked by Cookiebot until Statistics consent) ====== -->
   <!-- Google Analytics 4 (blocked until consent: Statistics) -->
   <script type="text/plain" data-cookiecategory="statistics" async
           src="https://www.googletagmanager.com/gtag/js?id=G-TTR3N0XBBC"></script>
@@ -74,52 +126,8 @@
     gtag('config', 'G-TTR3N0XBBC');
   </script>
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="/styles.css">
-  <meta name="color-scheme" content="dark light">
-</head>
-
-<body>
-  <!-- ===== Controls (language + theme) ===== -->
-  <header id="top" class="site-header">
-    <div class="controls">
-      <div class="language-selector">
-        <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
-        <button class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
-        <button class="lang-btn" data-lang="ru" aria-pressed="false">RU</button>
-      </div>
-      <button id="theme-toggle" aria-label="Toggle theme" aria-pressed="true">🌙</button>
-    </div>
-  </header>
-
-  <!-- App content root -->
-  <main id="content" class="fade">
-    <noscript>
-      <section class="nojs-hero">
-        <h1>Catherine Petrenko</h1>
-        <p>Project &amp; Product Manager. I build systems that keep working even when people rest.</p>
-      </section>
-    </noscript>
-  </main>
-
-  <!-- Cookies section: declaration + manual reopen button -->
-  <section id="cookies" style="margin:40px auto; max-width:880px; padding:0 16px;">
-    <h3>Cookies</h3>
-    <p>
-      <button type="button" onclick="if(window.Cookiebot){Cookiebot.renew();}">Change consent / Open banner</button>
-    </p>
-    <!-- Cookie declaration (optional but nice for transparency) -->
-    <script id="CookieDeclaration"
-      src="https://consent.cookiebot.com/d80b5793-ad70-40a1-8679-6f0e44e93e72/cd.js"
-      type="text/javascript" async></script>
-  </section>
-
-  <footer id="footer"></footer>
-
-  <!-- App Script -->
-  <script src="/script.js" defer></script>
-
-  <!-- Yandex.Metrica (place at END of body). Blocked until consent via Cookiebot -->
+  <!-- Yandex.Metrica (blocked until consent: Statistics) -->
+  <!-- Note: tag.js loaded with ID in URL; includes duplicate-insert guard -->
   <script type="text/plain" data-cookiecategory="statistics">
     (function(m,e,t,r,i,k,a){
       m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -142,7 +150,59 @@
   <noscript>
     <div><img src="https://mc.yandex.ru/watch/105226998" style="position:absolute; left:-9999px;" alt=""></div>
   </noscript>
-  <!-- /Yandex.Metrica -->
+
+  <!-- ====== A11Y TOUCH-UP: keep aria-pressed in sync if script.js hasn't yet ====== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      var btn = document.getElementById('theme-toggle');
+      if (!btn) return;
+      var pressed = document.documentElement.getAttribute('data-theme') === 'dark';
+      btn.setAttribute('aria-pressed', String(pressed));
+    });
+  </script>
+</body>
+</html>
+
+
+<!-- =============================================
+  cookies/index.html — Cookie Declaration page
+  - Includes CookieDeclaration script only here
+  - Also offers a safe reopen button
+============================================== -->
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <!-- ====== BASIC SEO ====== -->
+  <title>Cookies — Catherine Petrenko</title>
+  <meta name="description" content="Cookie policy and full cookie declaration.">
+  <link rel="canonical" href="https://catherine-petrenko.github.io/cookies">
+
+  <!-- ====== CONSENT (Cookiebot banner to allow changes) ====== -->
+  <script id="Cookiebot"
+    src="https://consent.cookiebot.com/uc.js"
+    data-cbid="d80b5793-ad70-40a1-8679-6f0e44e93e72"
+    data-blockingmode="auto"
+    type="text/javascript"></script>
+
+  <!-- ====== STYLES ====== -->
+  <meta name="color-scheme" content="dark light">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main style="max-width:980px;margin:40px auto;padding:0 16px;">
+    <h1>Cookie Policy & Declaration</h1>
+    <p>
+      <button type="button" onclick="if(window.Cookiebot){Cookiebot.renew();}">Change consent / Open banner</button>
+    </p>
+
+    <!-- Cookie Declaration embedded here (not on the homepage) -->
+    <script id="CookieDeclaration"
+      src="https://consent.cookiebot.com/d80b5793-ad70-40a1-8679-6f0e44e93e72/cd.js"
+      type="text/javascript" async></script>
+  </main>
 </body>
 </html>
 
