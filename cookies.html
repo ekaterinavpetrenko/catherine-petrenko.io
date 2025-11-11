@@ -1,30 +1,42 @@
+<!-- =============================================
+  cookies/index.html — Cookie Declaration page
+  - Includes CookieDeclaration script only here
+  - Also offers a safe reopen button
+============================================== -->
 <!doctype html>
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Cookies — Catherine Petrenko</title>
 
-  <!-- Cookiebot — нужен и тут (на случай смены согласия) -->
+  <!-- ====== BASIC SEO ====== -->
+  <title>Cookies — Catherine Petrenko</title>
+  <meta name="description" content="Cookie policy and full cookie declaration.">
+  <link rel="canonical" href="https://catherine-petrenko.github.io/cookies">
+
+  <!-- ====== CONSENT (Cookiebot banner to allow changes) ====== -->
   <script id="Cookiebot"
     src="https://consent.cookiebot.com/uc.js"
     data-cbid="d80b5793-ad70-40a1-8679-6f0e44e93e72"
     data-blockingmode="auto"
     type="text/javascript"></script>
 
+  <!-- ====== STYLES ====== -->
+  <meta name="color-scheme" content="dark light">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
   <main style="max-width:980px;margin:40px auto;padding:0 16px;">
     <h1>Cookie Policy & Declaration</h1>
     <p>
-      <button type="button" onclick="window.Cookiebot && Cookiebot.renew()">Change consent / Open banner</button>
+      <button type="button" onclick="if(window.Cookiebot){Cookiebot.renew();}">Change consent / Open banner</button>
     </p>
 
-    <!-- Здесь и только здесь — полная декларация -->
+    <!-- Cookie Declaration embedded here (not on the homepage) -->
     <script id="CookieDeclaration"
       src="https://consent.cookiebot.com/d80b5793-ad70-40a1-8679-6f0e44e93e72/cd.js"
       type="text/javascript" async></script>
   </main>
 </body>
 </html>
+
