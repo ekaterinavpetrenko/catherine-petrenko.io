@@ -63,5 +63,45 @@ body.theme-fade.theme-fade-active { opacity: 1; }
 
 /* ===================== MAIN CONTENT ===================== */
 main { text-align: center; margin-top: 3rem; max-width: 700px; padding: 1rem; transition: color var(--transition); }
-.inner-section { margin-bottom: 2rem; transition: opacity var(--transition), trans
+.inner-section { margin-bottom: 2rem; transition: opacity var(--transition), transform var(--transition); }
+.fade { opacity: 0; transform: translateY(10px); transition: opacity var(--transition), transform var(--transition); }
+.fade.show { opacity: 1; transform: translateY(0); }
+
+/* ===================== HERO PORTRAIT & CTA ===================== */
+.portrait-figure { margin: 16px 0 0; display: flex; justify-content: center; }
+.portrait-img {
+  display: block;
+  width: clamp(260px, 28vw, 560px);
+  height: auto;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.12), 0 2px 6px rgba(0,0,0,.06);
+  object-fit: cover;
+}
+.hero-cta {
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
+  flex-wrap: wrap;
+}
+.hero-cta a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  padding: .48rem .9rem;
+  transition: background-color var(--transition), color var(--transition), border-color var(--transition);
+}
+.hero-cta a:hover { background: rgba(255,255,255,.06); }
+[data-theme="light"] .hero-cta a:hover { background: rgba(0,0,0,.06); }
+
+/* ===================== SMALL SCREENS ===================== */
+@media (max-width: 480px) {
+  .controls { gap: .5rem; padding: .4rem .7rem; }
+  main { margin-top: 2rem; padding: .75rem; }
+}
+
+
 
