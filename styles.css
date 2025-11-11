@@ -1,6 +1,3 @@
-/* ============================================
-  Base theme tokens (unchanged)
-============================================ */
 :root {
   --bg-dark: rgb(29, 29, 31);
   --text-dark: rgb(245, 245, 247);
@@ -11,14 +8,24 @@
   --transition: 0.4s ease-in-out;
 }
 
-html { transition: background-color var(--transition), color var(--transition); }
+/* Global color transition for theme switch */
+html {
+  transition: background-color var(--transition), color var(--transition);
+}
 
-[data-theme="dark"] { background-color: var(--bg-dark); color: var(--text-dark); }
-[data-theme="light"] { background-color: var(--bg-light); color: var(--text-light); }
+/* Theme: dark */
+[data-theme="dark"] {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
 
-/* ============================================
-  Layout & typography (unchanged)
-============================================ */
+/* Theme: light */
+[data-theme="light"] {
+  background-color: var(--bg-light);
+  color: var(--text-light);
+}
+
+/* Page baseline layout */
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
@@ -26,18 +33,27 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: hidden;  /* prevent accidental horizontal scroll */
 }
 
-/* theme fade (unchanged) */
-body.theme-fade { opacity: 0; transition: opacity var(--transition); }
-body.theme-fade.theme-fade-active { opacity: 1; }
+/* Fade animation during theme change */
+body.theme-fade {
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+body.theme-fade.theme-fade-active {
+  opacity: 1;
+}
 
-/* ============================================
-  Top bar / controls (unchanged)
-============================================ */
-.top-bar { width: 100%; display: flex; justify-content: center; padding: 1rem; }
+/* Top bar wrapper */
+.top-bar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
 
+/* Controls container (language + theme) */
 .controls {
   display: flex;
   gap: 1rem;
@@ -46,11 +62,19 @@ body.theme-fade.theme-fade-active { opacity: 1; }
   padding: 0.5rem 1rem;
   backdrop-filter: blur(10px);
 }
-[data-theme="light"] .controls { background: var(--panel-bg-light); }
 
-.language-selector { display: flex; gap: 0.5rem; }
+/* Controls background in light theme */
+[data-theme="light"] .controls {
+  background: var(--panel-bg-light);
+}
 
-/* language buttons (unchanged) */
+/* Language selector group */
+.language-selector {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Language buttons */
 .lang-btn {
   background: transparent;
   border: 1px solid currentColor;
@@ -61,138 +85,167 @@ body.theme-fade.theme-fade-active { opacity: 1; }
   cursor: pointer;
   transition: background-color var(--transition), color var(--transition);
 }
-.lang-btn.active { background: currentColor; color: var(--bg-dark); }
-[data-theme="light"] .lang-btn.active { color: var(--bg-light); }
 
-/* theme toggle (unchanged) */
-#theme-toggle { background: transparent; border: none; font-size: 1.2rem; cursor: pointer; color: inherit; transition: transform 0.3s ease-in-out; }
-#theme-toggle:hover { transform: rotate(20deg); }
-
-/* ============================================
-  Main content (unchanged)
-============================================ */
-main { text-align: center; margin-top: 3rem; max-width: 700px; padding: 1rem; transition: color var(--transition); }
-
-.inner-section { margin-bottom: 2rem; transition: opacity var(--transition), transform var(--transition); }
-.fade { opacity: 0; transform: translateY(10px); transition: opacity var(--transition), transform var(--transition); }
-.fade.show { opacity: 1; transform: translateY(0); }
-
-/* =====================================================
-  Cookiebot — Banner theming (only, non-invasive)
-  - No changes to your base UI; applies to Cookiebot DOM only
-===================================================== */
-/* unify fonts */
-#CybotCookiebotDialog, #CybotCookiebotDialog * { font-family: inherit !important; }
-
-/* container look */
-#CybotCookiebotDialog {
-  border-radius: 16px !important;
-  box-shadow: 0 18px 60px rgba(0,0,0,.45) !important;
-  margin: 8px !important;                 /* soften edges on mobile bottom-fixed */
-  z-index: 99999 !important;
+/* Active language button */
+.lang-btn.active {
+  background: currentColor;
+  color: var(--bg-dark);
 }
 
-/* dark/light backgrounds & borders */
-html[data-theme="dark"] #CybotCookiebotDialog {
-  background: rgba(255,255,255,.06) !important;
-  color: var(--text-dark) !important;
-  border: 1px solid rgba(255,255,255,.10) !important;
-}
-html[data-theme="light"] #CybotCookiebotDialog {
-  background: rgba(0,0,0,.03) !important;
-  color: var(--text-light) !important;
-  border: 1px solid rgba(0,0,0,.10) !important;
+/* Active language in light theme */
+[data-theme="light"] .lang-btn.active {
+  color: var(--bg-light);
 }
 
-/* titles & texts */
-#CybotCookiebotDialog h2,
-#CybotCookiebotDialog .CybotCookiebotDialogBodyContentTitle { color: inherit !important; font-size: 1.05rem !important; margin: 0 0 .25rem !important; }
-#CybotCookiebotDialog .CybotCookiebotDialogBodyContentText,
-#CybotCookiebotDialog .CybotCookiebotDialogDetailBodyContent,
-#CybotCookiebotDialog .CybotCookiebotDialogDetailFooter { color: inherit !important; opacity: .85 !important; }
-
-/* details scroll pane tweak for dark */
-html[data-theme="dark"] #CybotCookiebotDialog .CybotCookiebotDialogDetailBodyContent { background: rgba(255,255,255,.04) !important; }
-html[data-theme="light"] #CybotCookiebotDialog .CybotCookiebotDialogDetailBodyContent { background: rgba(0,0,0,.03) !important; }
-#CybotCookiebotDialog .CybotCookiebotDialogDetailBodyContent { border-radius: 16px !important; padding: 0.5rem 0.75rem !important; }
-
-/* action buttons */
-#CybotCookiebotDialog .CybotCookiebotDialogBodyButton {
-  border-radius: 999px !important;
-  padding: .6rem 1rem !important;
-  border: 1px solid currentColor !important;
-  background: transparent !important;
-  color: inherit !important;
+/* Theme toggle button */
+#theme-toggle {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: inherit;
+  transition: transform 0.3s ease-in-out;
 }
-#CybotCookiebotDialog .CybotCookiebotDialogBodyButton:hover {
-  background: rgba(255,255,255,.06) !important;
-}
-html[data-theme="light"] #CybotCookiebotDialog .CybotCookiebotDialogBodyButton:hover {
-  background: rgba(0,0,0,.06) !important;
+#theme-toggle:hover {
+  transform: rotate(20deg);
 }
 
-/* emphasize Accept buttons slightly without brand color */
-#CybotCookiebotDialog #CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll,
-#CybotCookiebotDialog #CybotCookiebotDialogBodyLevelButtonAccept,
-#CybotCookiebotDialog #CybotCookiebotDialogBodyButtonAccept {
-  border-color: transparent !important;
-}
-html[data-theme="dark"] #CybotCookiebotDialog #CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll,
-html[data-theme="dark"] #CybotCookiebotDialog #CybotCookiebotDialogBodyLevelButtonAccept,
-html[data-theme="dark"] #CybotCookiebotDialog #CybotCookiebotDialogBodyButtonAccept { background: rgba(255,255,255,.18) !important; }
-html[data-theme="light"] #CybotCookiebotDialog #CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll,
-html[data-theme="light"] #CybotCookiebotDialog #CybotCookiebotDialogBodyLevelButtonAccept,
-html[data-theme="light"] #CybotCookiebotDialog #CybotCookiebotDialogBodyButtonAccept { background: rgba(0,0,0,.08) !important; }
-#CybotCookiebotDialog #CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll:hover,
-#CybotCookiebotDialog #CybotCookiebotDialogBodyLevelButtonAccept:hover,
-#CybotCookiebotDialog #CybotCookiebotDialogBodyButtonAccept:hover { filter: brightness(0.95) !important; }
-
-/* links inside banner */
-#CybotCookiebotDialog a { color: inherit !important; text-decoration: underline !important; text-underline-offset: 2px; }
-#CybotCookiebotDialog a:hover { text-decoration-thickness: 2px; }
-
-/* a11y focus ring */
-#CybotCookiebotDialog button:focus-visible,
-#CybotCookiebotDialog a:focus-visible,
-#CybotCookiebotDialog input:focus-visible { outline: 2px solid currentColor !important; outline-offset: 2px !important; }
-
-/* =====================================================
-  Cookie Declaration page (/cookies) wrappers only
-===================================================== */
-.cookies-page { max-width: 960px; margin: 40px auto; padding: 0 16px; }
-.cookies-card {
-  background: var(--panel-bg-dark);
-  border: 1px solid rgba(255,255,255,.10);
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.25);
-  padding: 24px;
-}
-[data-theme="light"] .cookies-card {
-  background: var(--panel-bg-light);
-  border-color: rgba(0,0,0,.10);
+/* Main content area */
+main {
+  text-align: center;
+  margin-top: 3rem;
+  max-width: 700px;
+  padding: 1rem;
+  transition: color var(--transition);
 }
 
-/* declaration content */
-#CookieDeclaration h1, #CookieDeclaration h2, #CookieDeclaration h3 { color: inherit; margin: 1.2rem 0 .6rem; }
-#CookieDeclaration p { color: inherit; opacity: .85; }
-#CookieDeclaration a { color: inherit; text-decoration: underline; }
-#CookieDeclaration a:hover { text-decoration-thickness: 2px; }
-
-#CookieDeclaration table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .95rem; }
-#CookieDeclaration th, #CookieDeclaration td { border: 1px solid rgba(255,255,255,.10); padding: .6rem .7rem; vertical-align: top; }
-#CookieDeclaration th { background: rgba(255,255,255,.08); text-align: left; }
-#CookieDeclaration tr:nth-child(odd) td { background: rgba(255,255,255,.03); }
-
-html[data-theme="light"] #CookieDeclaration th, html[data-theme="light"] #CookieDeclaration td { border-color: rgba(0,0,0,.10); }
-html[data-theme="light"] #CookieDeclaration th { background: rgba(0,0,0,.06); }
-html[data-theme="light"] #CookieDeclaration tr:nth-child(odd) td { background: rgba(0,0,0,.03); }
-
-/* =====================================================
-  Small screens
-===================================================== */
-@media (max-width: 480px) {
-  .controls { gap: .5rem; padding: .4rem .7rem; }
-  main { margin-top: 2rem; padding: .75rem; }
-  .cookies-card { padding: 16px; }
+/* Inner sections */
+.inner-section {
+  margin-bottom: 2rem;
+  transition: opacity var(--transition), transform var(--transition);
 }
+
+/* Appear/fade helpers */
+.fade {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ================================
+   HERO portrait and CTA (call-to-action)
+   ================================ */
+
+/* Portrait figure directly under hero text, centered */
+.portrait-figure {
+  margin: 16px 0 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* Square-ish portrait, responsive width */
+.portrait-img {
+  display: block;
+  width: clamp(260px, 28vw, 560px); /* up to ~560px on desktop */
+  height: auto;                     /* keep aspect ratio */
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.12), 0 2px 6px rgba(0,0,0,.06);
+  object-fit: cover;                /* safety if height is constrained somewhere */
+}
+
+/* CTA buttons row under the portrait */
+.hero-cta {
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
+  flex-wrap: wrap;
+}
+
+/* CTA buttons row under the portrait */
+.hero-cta {
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
+  flex-wrap: wrap;
+}
+
+/* Apple-like buttons (scoped to hero only) <a> */
+.hero-cta a.button {
+  text-decoration: none !important;
+  cursor: pointer;
+  display: inline-block;
+  white-space: normal;                  /* allow wrapping on small screens */
+
+  border-radius: 980px;
+
+  /* responsive font size for small screens */
+  font-size: clamp(15px, 4vw, 17px);
+
+  line-height: 1.17648;
+  font-weight: 400;
+  letter-spacing: -.022em;
+  /* font inherits from body (system-ui) */
+
+  border: 1px solid transparent;
+  padding: clamp(9px, 2.5vw, 11px) clamp(16px, 4vw, 21px); /* responsive padding */
+  max-width: 100%;                     /* never overflow container */
+  box-sizing: border-box;              /* include padding in width */
+
+  transition:
+    box-shadow .2s ease,
+    transform .06s ease,
+    background-color .2s ease,
+    color .2s ease,
+    border-color .2s ease;
+}
+
+/* Primary = blue filled (#0071e3) */
+.hero-cta a.button.button-primary {
+  background: rgb(0,113,227);
+  border-color: transparent;
+  color: #fff;
+}
+.hero-cta a.button.button-primary:hover {
+  box-shadow: 0 6px 14px rgba(0,0,0,.15);
+}
+
+/* Tertiary = transparent with blue stroke/text (#2997ff) */
+.hero-cta a.button.button-tertiary {
+  background: transparent;
+  color: rgb(41,151,255);
+  border-color: rgb(41,151,255);
+}
+.hero-cta a.button.button-tertiary:hover {
+  box-shadow: 0 6px 14px rgba(41,151,255,.25);
+}
+
+/* Press/keyboard focus states */
+.hero-cta a.button:active { transform: translateY(1px); }
+.hero-cta a.button:focus-visible { outline: 2px solid #0071e3; outline-offset: 2px; }
+
+/* Narrow screens: stack CTA vertically and make buttons full-width */
+@media (max-width: 600px) {
+  .hero-cta {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    padding: 0 16px;                 /* small horizontal breathing room */
+  }
+  .hero-cta a.button {
+    width: 100%;
+    max-width: 420px;                /* comfortable cap for larger phones */
+  }
+}
+
+}
+
 
